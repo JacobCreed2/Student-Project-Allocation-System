@@ -1,5 +1,5 @@
 <?php
-   include('session.php');
+   include('../resources/session.php');
 ?>
 <html">
    
