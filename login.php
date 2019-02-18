@@ -30,13 +30,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
       switch ($UserType) {
       case '1':
-        header("location: ./dashboards/adminDash.php");
+        header("location: ./adminDashboard/adminDash.php");
         break;
       case '2':
-        header("location: ./dashboards/supervisorDash.php");
+        header("location: ./studentDashboard/supervisorDash.php");
         break;
       case '3':
-        header("location: ./dashboards/studentDash.php");
+        header("location: ./supervisorDashboard/studentDash.php");
         break;
       
       default:
