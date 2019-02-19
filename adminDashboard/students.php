@@ -9,8 +9,12 @@
 </head>
 <body>
 <?php include ('adminNavbar.php'); ?>
+<script>
+document.getElementById("Students").style.color = "white";
+</script>
 
-<button>Add new students</button>
+
+<button onclick="window.location.href='newStudent.php'">Add new students</button>
 
 </body>
 </html>
