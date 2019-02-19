@@ -10,6 +10,10 @@
 <body>
 <?php include ('adminNavbar.php'); ?>
 
+<script>
+document.getElementById("Supervisors").style.color = "white";
+</script>
+
 <button>Add new supervisors</button>
 </body>
 </html>
