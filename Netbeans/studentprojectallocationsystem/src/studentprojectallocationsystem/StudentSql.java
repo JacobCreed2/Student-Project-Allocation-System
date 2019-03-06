@@ -13,7 +13,7 @@ import java.util.Set;
  *
  * @author jakec
  */
-public class Sql {
+public class StudentSql {
 //    public static String studentId;
 //    public static String firstName;
 //    public static String lastName;

@@ -26,7 +26,7 @@ public class Studentprojectallocationsystem {
      */
     public static void main(String[] args) throws Exception {
     
-    Sql.runSelect();
+    StudentSql.runSelect();
     
     //Studentkeywords.runNLP();
     
