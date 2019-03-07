@@ -11,6 +11,7 @@ package studentprojectallocationsystem;
  */
 public class Student {
     String studentId;
+    String supervisorId;
     String studentFirstname;
     String studentLastname;
     String projectId;
@@ -24,6 +25,14 @@ public class Student {
     
     public void setStudentId(String studentId) {
         this.studentId = studentId;
+    }
+
+    public String getSupervisorId() {
+        return supervisorId;
+    }
+
+    public void setSupervisorId(String supervisorId) {
+        this.supervisorId = supervisorId;
     }
     
     public String getStudentFirstname() {
@@ -76,19 +85,20 @@ public class Student {
     
     
     
-//    public Student(String id, String firstName, String lastName, String 
-//            projectId, String projectTitle, String projectDetails){
-//        this.studentId = id;
-//        this.studentFirstname = firstName;
-//        this.studentLastname = lastName;
-//        this.projectId = projectId;
-//        this.projectTitle = projectTitle;
-//        this.projectDetails = projectDetails;
-//    }
+    public Student(String id, String supervisor,String firstName, String lastName, String 
+            projectId, String projectTitle, String projectDetails){
+        this.studentId = id;
+        this.supervisorId = supervisor;
+        this.studentFirstname = firstName;
+        this.studentLastname = lastName;
+        this.projectId = projectId;
+        this.projectTitle = projectTitle;
+        this.projectDetails = projectDetails;
+    }
     
        @Override
    public String toString() {
-        return (studentId + " " + studentFirstname + " " + studentLastname + 
+        return (studentId + " " + supervisorId + " " + studentFirstname + " " + studentLastname + 
                 " " + projectId + " " + projectTitle + " " + projectDetails);
    }
 }
