@@ -25,12 +25,20 @@ public class Studentprojectallocationsystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
-    
+        
     StudentSql.runSelect();
     
     //Studentkeywords.runNLP();
     
-    Studentkeywords.cleanString();
+    //Studentkeywords.cleanString();
+    
+    StudentSql.createRandAllocTable();
+    
+    StudentSql.createNeedsAllocTable();
+    
+    StudentSql.createAllocTable();
+    
+    StudentSql.insertRandAllocTable();
        
     }
     
