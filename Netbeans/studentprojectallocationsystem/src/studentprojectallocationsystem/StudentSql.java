@@ -61,7 +61,7 @@ public class StudentSql {
             }
 
             students.forEach(student -> {
-                System.out.println("Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle());
+                System.out.println("Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle() + " SupervisorId " + student.getSupervisorId());
             });
 
             con.close();
@@ -77,8 +77,8 @@ public class StudentSql {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/spa-db", "root", "");
             Statement stmt = con.createStatement();
-            stmt.execute("DROP TABLE notallocated");
-            stmt.execute("CREATE TABLE randomallocation(Id int NOT NULL AUTO_INCREMENT, StudentId int, FirstName varchar(20), LastName varchar(20), ProjectId int, ProjectTitle text, ProjectDetails text, PRIMARY KEY(Id))");  
+            stmt.execute("DROP TABLE randomallocation");
+            stmt.execute("CREATE TABLE randomallocation(Id int NOT NULL AUTO_INCREMENT, StudentId int, SupervisorId int, FirstName varchar(20), LastName varchar(20), ProjectId int, ProjectTitle text, ProjectDetails text, PRIMARY KEY(Id))");  
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -92,7 +92,7 @@ public class StudentSql {
                     "jdbc:mysql://localhost:3306/spa-db", "root", "");
             Statement stmt = con.createStatement();
             stmt.execute("DROP TABLE needsallocating");
-            stmt.execute("CREATE TABLE needsallocating(Id int NOT NULL AUTO_INCREMENT, StudentId int, FirstName varchar(20), LastName varchar(20), ProjectId int, ProjectTitle text, ProjectDetails text, PRIMARY KEY(Id))");  
+            stmt.execute("CREATE TABLE needsallocating(Id int NOT NULL AUTO_INCREMENT, StudentId int, SupervisorId int, FirstName varchar(20), LastName varchar(20), ProjectId int, ProjectTitle text, ProjectDetails text, PRIMARY KEY(Id))");  
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -105,8 +105,8 @@ public class StudentSql {
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/spa-db", "root", "");
             Statement stmt = con.createStatement();
-            //stmt.execute("DROP TABLE Allocted");
-            stmt.execute("CREATE TABLE Allocated(Id int NOT NULL AUTO_INCREMENT, StudentId int, FirstName varchar(20), LastName varchar(20), ProjectId int, ProjectTitle text, ProjectDetails text, PRIMARY KEY(Id))");  
+            stmt.execute("DROP TABLE allocated");
+            stmt.execute("CREATE TABLE allocated(Id int NOT NULL AUTO_INCREMENT, StudentId int, SupervisorId int, FirstName varchar(20), LastName varchar(20), ProjectId int, ProjectTitle text, ProjectDetails text, PRIMARY KEY(Id))");  
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -118,47 +118,68 @@ public class StudentSql {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/spa-db", "root", "");
-            Statement stmt = con.createStatement();
             
             for (int i = 0; i < students.size(); i++) {
-                if (students.get(i).getProjectTitle() == null) {
+                if (students.get(i).getProjectTitle() == null && students.get(i).getSupervisorId() == null) {
                     String studentId = students.get(i).getStudentId();
+                    String supervisorId = students.get(i).getSupervisorId();
                     String studentFirstname = students.get(i).getStudentFirstname();
                     String studentLastname = students.get(i).getStudentLastname();
                     String projectId = students.get(i).getProjectId();
                     String projectTitle = students.get(i).getProjectTitle();
                     String projectDetails = students.get(i).getProjectDetails();
                     //String sql = "INSERT INTO 'notallocated' (StudentId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES ('" + studentId + "','" + studentFirstname + "','" + studentLastname + "','" + projectId + "','" + projectTitle + "','" + projectDetails + "')"; 
-                    PreparedStatement pstmt = con.prepareStatement("INSERT INTO randomallocation (StudentId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES (?, ?, ?, ?, ?, ?)");
+                    PreparedStatement pstmt = con.prepareStatement("INSERT INTO randomallocation (StudentId,SupervisorId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES (?, ?, ?, ?, ?, ?, ?)");
                     pstmt.setString(1, studentId);
-                    pstmt.setString(2, studentFirstname);
-                    pstmt.setString(3, studentLastname);
-                    pstmt.setString(4, projectId);
-                    pstmt.setString(5, projectTitle);
-                    pstmt.setString(6, projectDetails);
+                    pstmt.setString(2, supervisorId);
+                    pstmt.setString(3, studentFirstname);
+                    pstmt.setString(4, studentLastname);
+                    pstmt.setString(5, projectId);
+                    pstmt.setString(6, projectTitle);
+                    pstmt.setString(7, projectDetails);
                     pstmt.executeUpdate();
-                    System.out.println("doesn't have project " + studentId);
-                    System.out.println("doesn't have project " + studentFirstname);
-                }else if (students.get(i).getProjectTitle() == null) {
-                    
+                    System.out.println("Needs random allocation " + studentId);
+                    System.out.println("Needs random allocation " + studentFirstname);
+                }else if (students.get(i).getProjectTitle() != null && students.get(i).getSupervisorId() == null) {
+                    String studentId = students.get(i).getStudentId();
+                    String supervisorId = students.get(i).getSupervisorId();
+                    String studentFirstname = students.get(i).getStudentFirstname();
+                    String studentLastname = students.get(i).getStudentLastname();
+                    String projectId = students.get(i).getProjectId();
+                    String projectTitle = students.get(i).getProjectTitle();
+                    String projectDetails = students.get(i).getProjectDetails();
+                    //String sql = "INSERT INTO 'notallocated' (StudentId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES ('" + studentId + "','" + studentFirstname + "','" + studentLastname + "','" + projectId + "','" + projectTitle + "','" + projectDetails + "')"; 
+                    PreparedStatement pstmt = con.prepareStatement("INSERT INTO needsallocating (StudentId,SupervisorId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    pstmt.setString(1, studentId);
+                    pstmt.setString(2, supervisorId);
+                    pstmt.setString(3, studentFirstname);
+                    pstmt.setString(4, studentLastname);
+                    pstmt.setString(5, projectId);
+                    pstmt.setString(6, projectTitle);
+                    pstmt.setString(7, projectDetails);
+                    pstmt.executeUpdate();
+                    System.out.println("Needs allocating " + studentId);
+                    System.out.println("Needs allocating " + studentFirstname);
                 }else   {
                     String studentId = students.get(i).getStudentId();
+                    String supervisorId = students.get(i).getSupervisorId();
                     String studentFirstname = students.get(i).getStudentFirstname();
                     String studentLastname = students.get(i).getStudentLastname();
                     String projectId = students.get(i).getProjectId();
                     String projectTitle = students.get(i).getProjectTitle();
                     String projectDetails = students.get(i).getProjectDetails();
                     //String sql = "INSERT INTO 'notallocated' (StudentId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES ('" + studentId + "','" + studentFirstname + "','" + studentLastname + "','" + projectId + "','" + projectTitle + "','" + projectDetails + "')"; 
-                    PreparedStatement pstmt = con.prepareStatement("INSERT INTO needsallocating (StudentId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES (?, ?, ?, ?, ?, ?)");
+                    PreparedStatement pstmt = con.prepareStatement("INSERT INTO allocated (StudentId,SupervisorId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES (?, ?, ?, ?, ?, ?, ?)");
                     pstmt.setString(1, studentId);
-                    pstmt.setString(2, studentFirstname);
-                    pstmt.setString(3, studentLastname);
-                    pstmt.setString(4, projectId);
-                    pstmt.setString(5, projectTitle);
-                    pstmt.setString(6, projectDetails);
+                    pstmt.setString(2, supervisorId);
+                    pstmt.setString(3, studentFirstname);
+                    pstmt.setString(4, studentLastname);
+                    pstmt.setString(5, projectId);
+                    pstmt.setString(6, projectTitle);
+                    pstmt.setString(7, projectDetails);
                     pstmt.executeUpdate();
-                    System.out.println(studentId);
-                    System.out.println(studentFirstname);
+                    System.out.println("Allocated " + studentId);
+                    System.out.println("Allocated " + studentFirstname);
                 }
             }
             con.close();
