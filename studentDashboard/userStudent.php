@@ -2,17 +2,14 @@
    include('../resources/session.php');
    include('../resources/styling.html');
 ?>
+<!DOCTYPE html>
 <html>
-   
-   <head>
-      <title>Welcome Student</title>
-   </head>
-   
+<head>
+	<title>Student Project Allocation System</title>
+</head>
 <?php include ('studentNavbar.php'); ?>
 
    <body>
-      <h1>Welcome <?php echo $login_session; ?> Student</h1>
       <h2><a href = "../logout.php">Sign Out</a></h2>
    </body>
-   
 </html>
