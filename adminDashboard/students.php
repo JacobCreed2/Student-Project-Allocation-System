@@ -13,8 +13,7 @@
 document.getElementById("Students").style.color = "white";
 </script>
 
-
-<button onclick="window.location.href='newStudent.php'">Add new students</button>
+<?php    include('newStudent.php');?>
 
 </body>
 </html>

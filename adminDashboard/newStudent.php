@@ -8,7 +8,6 @@
 	<title>Student Project Allocation System</title>
 </head>
 <body>
-<?php include ('adminNavbar.php'); ?>
 
 <form class="needs-validation" action="../sql/createStudent.php" method="post" novalidate>
   <div class="form-row">
