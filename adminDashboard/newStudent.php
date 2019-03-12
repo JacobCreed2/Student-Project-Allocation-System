@@ -1,5 +1,4 @@
 <?php
-   include('../resources/session.php');
    include('../resources/styling.html');
 ?>
 <!DOCTYPE html>
