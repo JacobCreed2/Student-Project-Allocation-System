@@ -24,19 +24,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if($count == 1) {
      $_SESSION['login_user'] = $myusername;
-  }else {
-     $error = "Your Login Name or Password is invalid";
-  }
 
       switch ($UserType) {
       case '1':
         header("location: ./adminDashboard/adminDash.php");
         break;
       case '2':
-        header("location: ./studentDashboard/supervisorDash.php");
+        header("location: ./supervisorDashboard/supervisorDash.php");
         break;
       case '3':
-        header("location: ./supervisorDashboard/studentDash.php");
+        header("location: ./studentDashboard/studentDash.php");
         break;
       
       default:
@@ -44,5 +41,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "UserType Unknown";
         break;
     }
+  }else {
+     $error = "Your Login Name or Password is invalid";
+     echo $error;
+  }
+
 }
 ?>
