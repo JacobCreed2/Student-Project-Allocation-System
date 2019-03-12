@@ -12,9 +12,7 @@
 <script>
 document.getElementById("Projects").style.color = "white";
 </script>
-
-
-<button onclick="window.location.href='newProject.php'">Add new project</button>
+<?php include ('newProject.php'); ?>
 
 </body>
 </html>
