@@ -1,7 +1,5 @@
 <?php
-   include('../resources/session.php');
    include('../resources/styling.html');
-   include('../resources/config.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,7 +7,6 @@
 	<title>Student Project Allocation System</title>
 </head>
 <body>
-<?php include ('studentNavbar.php'); ?>
 
 <form class="needs-validation" action="../sql/createProject.php" method="post" novalidate>
   <div class="form-row">
