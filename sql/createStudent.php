@@ -19,39 +19,34 @@ function random_password( $length = 8 ) {
     return $password;
 }
 
-function checkUsername($firstName) {
-$firstInitial =  substr($firstName,0,1);
+$password = random_password();
 
-$userName = ($firstInitial . $lastName);
-echo $userName;
+function selectId($db, $studentId){
+  $select = "SELECT Id FROM students WHERE StudentId = '$studentId'";
 
-    $checkUsername = "SELECT Username FROM users WHERE Username = '$userName'";
-    $result = mysqli_query($db,$checkUsername);
-    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+  $result = mysqli_query($db, $select);
 
-    $name = $row['Username'];
+  if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_assoc($result)) {
+        $id = $row["Id"];
+      }
+  } else {
+    echo "0";
+  }
 
-  return $name;
+  return $id;   
 }
 
-$usernameExsists = checkUsername($firstName);
+$id = selectId($db, $studentId);
 
-$selectId = "SELECT Id FROM students WHERE FirstName = '$firstName'";
+$sql1 = "INSERT INTO users (Username, Password, UserTypeId, StudentId) VALUES ('$studentId', '$password', '3', '$id')";
 
-if (empty($name)) {
-  $insert = "INSERT INTO users (Username,Password) VALUES ('$Username, $password, 3, $selectId')";
+if ($db->query($sql1) === TRUE) {
+    header('Location: ../adminDashboard/newStudent.php');
+
+} else {
+    echo "Error: " . $sql1 . "<br>" . $db->error;
 }
-
-$password = random_password(8);
-
-echo $name;
-    // execute the prepared statement
-    // while($row=$result->fetch()){ 
-    //   $ID = $row['RandID'];
-    // }
-    // if (empty($ID)) {
-    //   $ID = "No RandID";
-    // }
 
 $db->close();
 //}
