@@ -12,7 +12,16 @@
 <script>
 document.getElementById("Projects").style.color = "white";
 </script>
-<?php include ('newProject.php'); ?>
+<?php
+include ('../sql/selectStudentProject.php');
+$findId = findId($db,$id);
+
+if (empty($findId)) {
+	include ('newProject.php');
+}else {
+	include ('../tables/displayProjects.php');
+}
+?>
 
 </body>
 </html>

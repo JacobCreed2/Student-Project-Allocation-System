@@ -1,52 +1,47 @@
 <?php
-include ('../resources/config.php');
+include('../resources/session.php');
 //if($_SERVER["REQUEST_METHOD"] == "POST") {
-  $Title = mysqli_real_escape_string($db,$_POST['firstname']);
-  $Description = mysqli_real_escape_string($db,$_POST['lastname']);
-  
-  $sql = "INSERT INTO students (FirstName, LastName, StudentId) VALUES ('$firstName', '$lastName', '$studentId')";
-if ($db->query($sql) === TRUE) {
-    echo "New record created successfully\n";
+$title = mysqli_real_escape_string($db,$_POST['title']);
+$details = mysqli_real_escape_string($db,$_POST['details']);
+$supervisor = mysqli_real_escape_string($db,$_POST['selectsupervisor']);
+echo $supervisor;
+$dateCreated = date("Y-m-d H:i:s");
+$studentId = $id;
 
-} else {
-    echo "Error: " . $sql . "<br>" . $db->error;
-}
+function findId($db,$studentId)
+{
+  $findId = "SELECT StudentId FROM projects WHERE StudentId = '$studentId'";
 
-function random_password( $length = 8 ) {
-    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
-    $password = substr( str_shuffle( $chars ), 0, $length );
-    return $password;
-}
-
-$password = random_password();
-
-function selectId($db, $studentId){
-  $select = "SELECT Id FROM students WHERE StudentId = '$studentId'";
-
-  $result = mysqli_query($db, $select);
+  $result = mysqli_query($db, $findId);
 
   if (mysqli_num_rows($result) > 0) {
-      while ($row = mysqli_fetch_assoc($result)) {
-        $id = $row["Id"];
-      }
+    while ($row = mysqli_fetch_assoc($result)) {
+      $stuId = $row["StudentId"];
+      //echo $stuId;
+    }
   } else {
-    echo "0";
+    $stuId = null;
   }
-
-  return $id;   
+  return $stuId;
 }
 
-$id = selectId($db, $studentId);
+$findID = findId($db,$studentId);
 
-$sql1 = "INSERT INTO users (Username, Password, UserTypeId, StudentId) VALUES ('$studentId', '$password', '3', '$id')";
+if ($supervisor == "noselection") {
+  echo "No selection made";
+}else{
+  if (empty($findID)) {
+    $sql = "INSERT INTO projects (StudentId, SupervisorId, ProjectTitle, ProjectDetails, ProjectCreated) VALUES ('$studentId', '$supervisor', '$title', '$details', '$dateCreated')";
+    if ($db->query($sql) === TRUE) {
+      echo "New record created successfully\n";
 
-if ($db->query($sql1) === TRUE) {
-    header('Location: ../adminDashboard/newStudent.php');
-
-} else {
-    echo "Error: " . $sql1 . "<br>" . $db->error;
+    } else {
+      echo "Error: " . $sql . "<br>" . $db->error;
+    }
+  }else {
+    echo "Only one project per student";
+  }
 }
-
 $db->close();
 //}
 ?>
