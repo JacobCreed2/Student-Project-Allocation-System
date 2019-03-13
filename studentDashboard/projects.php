@@ -19,7 +19,7 @@ $findId = findId($db,$id);
 if (empty($findId)) {
 	include ('newProject.php');
 }else {
-	include ('../tables/displayProjects.php');
+	include ('../tables/displayStudentProjects.php');
 }
 ?>
 
