@@ -9,7 +9,7 @@
    </head>
 <?php include ('supervisorNavbar.php'); ?>   
    <body>
-      <h1>Welcome <?php echo $userName; ?> Supervisor</h1>
+      <h1>Welcome <?php echo $userName; echo $id; ?> Supervisor</h1>
       <h2><a href = "../logout.php">Sign Out</a></h2>
    </body>
    
