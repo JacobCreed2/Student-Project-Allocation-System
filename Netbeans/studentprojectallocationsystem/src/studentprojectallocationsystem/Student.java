@@ -18,6 +18,7 @@ public class Student {
     String projectTitle;
     String projectDetails;
     String projectNLP;
+    String projectAllocated;
 
     public String getStudentId() {
         return studentId;
@@ -82,11 +83,19 @@ public class Student {
     public void setProjectNLP(String projectNLP) {
         this.projectNLP = projectNLP;
     }
+
+    public String getProjectAllocated() {
+        return projectAllocated;
+    }
+
+    public void setProjectAllocated(String projectAllocated) {
+        this.projectAllocated = projectAllocated;
+    }
     
     
     
     public Student(String id, String supervisor,String firstName, String lastName, String 
-            projectId, String projectTitle, String projectDetails){
+            projectId, String projectTitle, String projectDetails, String projectAllocated){
         this.studentId = id;
         this.supervisorId = supervisor;
         this.studentFirstname = firstName;
@@ -94,11 +103,12 @@ public class Student {
         this.projectId = projectId;
         this.projectTitle = projectTitle;
         this.projectDetails = projectDetails;
+        this.projectAllocated = projectAllocated;
     }
     
        @Override
    public String toString() {
         return (studentId + " " + supervisorId + " " + studentFirstname + " " + studentLastname + 
-                " " + projectId + " " + projectTitle + " " + projectDetails);
+                " " + projectId + " " + projectTitle + " " + projectDetails + " " + projectAllocated);
    }
 }

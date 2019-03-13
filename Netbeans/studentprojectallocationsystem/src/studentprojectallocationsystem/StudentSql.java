@@ -55,8 +55,9 @@ public class StudentSql {
                 String projectId = rs.getString("projects.Id");
                 String projectTitle = rs.getString("projecttitle");
                 String projectDetails = rs.getString("projectdetails");
+                String projectAllocated = rs.getString("Allocated");
                 
-                students.add(new Student(studentId,supervisorId,studentFirstname,studentLastname,projectId,projectTitle, projectDetails));
+                students.add(new Student(studentId,supervisorId,studentFirstname,studentLastname,projectId,projectTitle, projectDetails,projectAllocated));
                 //System.out.println(students);
             }
 
@@ -113,14 +114,16 @@ public class StudentSql {
         }
     }
     
-    static void insertRandAllocTable (){
+    static void insertAllocTables (){
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/spa-db", "root", "");
+            String one = "1";
+            String zero = "0";
             
             for (int i = 0; i < students.size(); i++) {
-                if (students.get(i).getProjectTitle() == null && students.get(i).getSupervisorId() == null) {
+                if (students.get(i).getProjectTitle() == null && students.get(i).getSupervisorId() == null) { //Students don't have any information so need to be randomly alloacted
                     String studentId = students.get(i).getStudentId();
                     String supervisorId = students.get(i).getSupervisorId();
                     String studentFirstname = students.get(i).getStudentFirstname();
@@ -140,7 +143,7 @@ public class StudentSql {
                     pstmt.executeUpdate();
                     System.out.println("Needs random allocation " + studentId);
                     System.out.println("Needs random allocation " + studentFirstname);
-                }else if (students.get(i).getProjectTitle() != null && students.get(i).getSupervisorId() == null) {
+                }else if (students.get(i).getProjectTitle() != null && students.get(i).getSupervisorId() != null && students.get(i).getProjectAllocated().equals(zero)) { //Students haven't been allocated.
                     String studentId = students.get(i).getStudentId();
                     String supervisorId = students.get(i).getSupervisorId();
                     String studentFirstname = students.get(i).getStudentFirstname();
@@ -160,7 +163,7 @@ public class StudentSql {
                     pstmt.executeUpdate();
                     System.out.println("Needs allocating " + studentId);
                     System.out.println("Needs allocating " + studentFirstname);
-                }else   {
+                }else if (students.get(i).getProjectTitle() != null && students.get(i).getSupervisorId() != null && students.get(i).getProjectAllocated().equals(one)) { //Students have been allocated
                     String studentId = students.get(i).getStudentId();
                     String supervisorId = students.get(i).getSupervisorId();
                     String studentFirstname = students.get(i).getStudentFirstname();
@@ -180,6 +183,8 @@ public class StudentSql {
                     pstmt.executeUpdate();
                     System.out.println("Allocated " + studentId);
                     System.out.println("Allocated " + studentFirstname);
+                }else{
+                    System.out.println("Can't be catergorised");
                 }
             }
             con.close();

@@ -38,7 +38,7 @@ public class Studentprojectallocationsystem {
     
     StudentSql.createAllocTable();
     
-    StudentSql.insertRandAllocTable();
+    StudentSql.insertAllocTables();
        
     }
     
