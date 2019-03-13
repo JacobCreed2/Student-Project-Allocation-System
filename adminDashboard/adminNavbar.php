@@ -7,6 +7,7 @@
     <div class="navbar-nav mr-auto">
       <a class="nav-item nav-link" id="Students" onClick="location.href='students.php'">Students</a>
       <a class="nav-item nav-link" id="Supervisors" href="supervisors.php">Supervisors</a>
+      <a class="nav-item nav-link" id="Supervisors" href="projects.php">Projects</a>
     </div>
         <div class="navbar-nav ml-auto">
       <a class="nav-item nav-link" id="Username" onClick="location.href='userAdmin.php'"><?php echo $userName; ?></a>
