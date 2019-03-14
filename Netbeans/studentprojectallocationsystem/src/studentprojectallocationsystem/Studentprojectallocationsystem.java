@@ -26,7 +26,11 @@ public class Studentprojectallocationsystem {
      */
     public static void main(String[] args) throws Exception {
         
-    StudentSql.runSelect();
+    StudentSql.selectAllStudents();
+    
+    SupervisorSql.selectSupervisors();
+    
+    StudentSql.selectUnallocatedStudents();
     
     //Studentkeywords.runNLP();
     
@@ -39,6 +43,10 @@ public class Studentprojectallocationsystem {
     StudentSql.createAllocTable();
     
     StudentSql.insertAllocTables();
+    
+    SupervisorSql.createSupervisorpref();
+    
+    Studentkeywords.matchkeywords();
        
     }
     
