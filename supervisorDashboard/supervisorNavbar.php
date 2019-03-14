@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav mr-auto">
       <a class="nav-item nav-link" id="Projects" onClick="location.href='projects.php'">Projects</a>
-      <a class="nav-item nav-link" id="Students" href="supervisors.php">Students</a>
+      <a class="nav-item nav-link" id="Students" href="details.php">Add project details</a>
     </div>
         <div class="navbar-nav ml-auto">
       <a class="nav-item nav-link" id="Username" onClick="location.href='userSupervisor.php'"><?php echo $userName; ?></a>
