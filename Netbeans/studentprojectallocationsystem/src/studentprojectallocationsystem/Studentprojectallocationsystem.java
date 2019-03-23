@@ -5,15 +5,7 @@
  */
 package studentprojectallocationsystem;
 
-import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Scanner;
-import com.paralleldots.paralleldots.App;
-import java.util.Arrays;
+
 
 /**
  *
@@ -30,8 +22,6 @@ public class Studentprojectallocationsystem {
     
     SupervisorSql.selectSupervisors();
     
-    StudentSql.selectUnallocatedStudents();
-    
     //Studentkeywords.runNLP();
     
     //Studentkeywords.cleanString();
@@ -44,9 +34,19 @@ public class Studentprojectallocationsystem {
     
     StudentSql.insertAllocTables();
     
+    StudentSql.selectUnallocatedStudents();
+    
     SupervisorSql.createSupervisorpref();
     
+    Studentkeywords.shuffleStudents();
+    
     Studentkeywords.matchkeywords();
+    
+    Studentkeywords.test();
+    
+    Studentkeywords.findBestSupervisor();
+    
+    //SupervisorSql.insertPrefTables();
        
     }
     
