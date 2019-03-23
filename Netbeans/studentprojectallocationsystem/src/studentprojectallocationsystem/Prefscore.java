@@ -5,12 +5,16 @@
  */
 package studentprojectallocationsystem;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Objects;
+
 /**
  *
  * @author jakec
  */
 public class Prefscore {
-    String studentId;
+        String studentId;
     String supervisorId;
     String prefScore;
 
@@ -43,11 +47,47 @@ public class Prefscore {
         this.supervisorId = supervisorId;
         this.prefScore = prefScore;
     }
-
+    
+    public static Comparator<Prefscore> sortPrefscore = new Comparator<Prefscore>(){
+            
+        @Override
+        public int compare(Prefscore a, Prefscore b){
+        
+            int prefScore1 = Integer.parseInt(a.getPrefScore());
+            int prefScore2 = Integer.parseInt(b.getPrefScore());
+            
+            return prefScore2 - prefScore1;
+        }
+            
+    };
+    
+        public static Comparator<Prefscore> sortSupId = new Comparator<Prefscore>(){
+            
+        @Override
+        public int compare(Prefscore a, Prefscore b){
+        
+            int supId1 = Integer.parseInt(a.getSupervisorId());
+            int supId2 = Integer.parseInt(b.getSupervisorId());
+            
+            return supId1 - supId2;
+        }
+            
+    };
+        
+    static void removeAll(ArrayList<Prefscore> list, Prefscore student) {
+        for (int j = 0; j < list.size(); j++) {
+            String student1 = student.getStudentId();
+            String student2 = list.get(j).getStudentId();
+            if (Objects.equals(student1, student2)) {
+                list.remove(j);
+                j--;
+                //System.out.println("List: " + list);
+            }
+        }
+    }
+    
     @Override
     public String toString() {
         return "Unallocated{" + "studentId=" + studentId + ", supervisorId=" + supervisorId + ", prefScore=" + prefScore + '}';
     }
-    
-    
 }
