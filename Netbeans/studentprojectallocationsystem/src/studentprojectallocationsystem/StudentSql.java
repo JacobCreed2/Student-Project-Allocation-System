@@ -21,7 +21,7 @@ public class StudentSql {
 //    public static String projectTitle;
 //    public static String projectDetails;
     public static ArrayList<Student> unallocatedstudents = new ArrayList<Student>();
-    public static ArrayList<Student> students = new ArrayList<Student>();
+    public static ArrayList<Student> StudentsList = new ArrayList<Student>();
     
 //    static void methodname(){
 //        try {
@@ -58,11 +58,11 @@ public class StudentSql {
                 String projectDetails = rs.getString("projectdetails");
                 String projectAllocated = rs.getString("Allocated");
                 
-                students.add(new Student(studentId,supervisorId,studentFirstname,studentLastname,projectId,projectTitle, projectDetails,projectAllocated));
+                StudentsList.add(new Student(studentId,supervisorId,studentFirstname,studentLastname,projectId,projectTitle, projectDetails,projectAllocated));
                 //System.out.println(students);
             }
 
-            students.forEach(student -> {
+            StudentsList.forEach(student -> {
                 System.out.println("Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle() + " SupervisorId " + student.getSupervisorId());
             });
 
@@ -157,15 +157,15 @@ public class StudentSql {
             String one = "1";
             String zero = "0";
             
-            for (int i = 0; i < students.size(); i++) {
-                if (students.get(i).getProjectTitle() == null && students.get(i).getSupervisorId() == null) { //Students don't have any information so need to be randomly alloacted
-                    String studentId = students.get(i).getStudentId();
-                    String supervisorId = students.get(i).getSupervisorId();
-                    String studentFirstname = students.get(i).getStudentFirstname();
-                    String studentLastname = students.get(i).getStudentLastname();
-                    String projectId = students.get(i).getProjectId();
-                    String projectTitle = students.get(i).getProjectTitle();
-                    String projectDetails = students.get(i).getProjectDetails();
+            for (int i = 0; i < StudentsList.size(); i++) {
+                if (StudentsList.get(i).getProjectTitle() == null && StudentsList.get(i).getSupervisorId() == null) { //Students don't have any information so need to be randomly alloacted
+                    String studentId = StudentsList.get(i).getStudentId();
+                    String supervisorId = StudentsList.get(i).getSupervisorId();
+                    String studentFirstname = StudentsList.get(i).getStudentFirstname();
+                    String studentLastname = StudentsList.get(i).getStudentLastname();
+                    String projectId = StudentsList.get(i).getProjectId();
+                    String projectTitle = StudentsList.get(i).getProjectTitle();
+                    String projectDetails = StudentsList.get(i).getProjectDetails();
                     //String sql = "INSERT INTO 'notallocated' (StudentId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES ('" + studentId + "','" + studentFirstname + "','" + studentLastname + "','" + projectId + "','" + projectTitle + "','" + projectDetails + "')"; 
                     PreparedStatement pstmt = con.prepareStatement("INSERT INTO randomallocation (StudentId,SupervisorId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES (?, ?, ?, ?, ?, ?, ?)");
                     pstmt.setString(1, studentId);
@@ -178,15 +178,15 @@ public class StudentSql {
                     pstmt.executeUpdate();
                     System.out.println("Needs random allocation " + studentId);
                     System.out.println("Needs random allocation " + studentFirstname);
-                }else if (students.get(i).getProjectTitle() != null && students.get(i).getSupervisorId() != null && students.get(i).getProjectAllocated().equals(zero)) { //Students haven't been allocated.
-                    String studentId = students.get(i).getStudentId();
-                    String supervisorId = students.get(i).getSupervisorId();
-                    String studentFirstname = students.get(i).getStudentFirstname();
-                    String studentLastname = students.get(i).getStudentLastname();
-                    String projectId = students.get(i).getProjectId();
-                    String projectTitle = students.get(i).getProjectTitle();
-                    String projectDetails = students.get(i).getProjectDetails();
-                    String allocated = students.get(i).getProjectAllocated();
+                }else if (StudentsList.get(i).getProjectTitle() != null && StudentsList.get(i).getSupervisorId() != null && StudentsList.get(i).getProjectAllocated().equals(zero)) { //Students haven't been allocated.
+                    String studentId = StudentsList.get(i).getStudentId();
+                    String supervisorId = StudentsList.get(i).getSupervisorId();
+                    String studentFirstname = StudentsList.get(i).getStudentFirstname();
+                    String studentLastname = StudentsList.get(i).getStudentLastname();
+                    String projectId = StudentsList.get(i).getProjectId();
+                    String projectTitle = StudentsList.get(i).getProjectTitle();
+                    String projectDetails = StudentsList.get(i).getProjectDetails();
+                    String allocated = StudentsList.get(i).getProjectAllocated();
                     //String sql = "INSERT INTO 'notallocated' (StudentId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES ('" + studentId + "','" + studentFirstname + "','" + studentLastname + "','" + projectId + "','" + projectTitle + "','" + projectDetails + "')"; 
                     PreparedStatement pstmt = con.prepareStatement("INSERT INTO needsallocating (StudentId,SupervisorId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails, Allocated) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                     pstmt.setString(1, studentId);
@@ -200,14 +200,14 @@ public class StudentSql {
                     pstmt.executeUpdate();
                     System.out.println("Needs allocating " + studentId);
                     System.out.println("Needs allocating " + studentFirstname);
-                }else if (students.get(i).getProjectTitle() != null && students.get(i).getSupervisorId() != null && students.get(i).getProjectAllocated().equals(one)) { //Students have been allocated
-                    String studentId = students.get(i).getStudentId();
-                    String supervisorId = students.get(i).getSupervisorId();
-                    String studentFirstname = students.get(i).getStudentFirstname();
-                    String studentLastname = students.get(i).getStudentLastname();
-                    String projectId = students.get(i).getProjectId();
-                    String projectTitle = students.get(i).getProjectTitle();
-                    String projectDetails = students.get(i).getProjectDetails();
+                }else if (StudentsList.get(i).getProjectTitle() != null && StudentsList.get(i).getSupervisorId() != null && StudentsList.get(i).getProjectAllocated().equals(one)) { //Students have been allocated
+                    String studentId = StudentsList.get(i).getStudentId();
+                    String supervisorId = StudentsList.get(i).getSupervisorId();
+                    String studentFirstname = StudentsList.get(i).getStudentFirstname();
+                    String studentLastname = StudentsList.get(i).getStudentLastname();
+                    String projectId = StudentsList.get(i).getProjectId();
+                    String projectTitle = StudentsList.get(i).getProjectTitle();
+                    String projectDetails = StudentsList.get(i).getProjectDetails();
                     //String sql = "INSERT INTO 'notallocated' (StudentId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES ('" + studentId + "','" + studentFirstname + "','" + studentLastname + "','" + projectId + "','" + projectTitle + "','" + projectDetails + "')"; 
                     PreparedStatement pstmt = con.prepareStatement("INSERT INTO allocated (StudentId,SupervisorId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES (?, ?, ?, ?, ?, ?, ?)");
                     pstmt.setString(1, studentId);
