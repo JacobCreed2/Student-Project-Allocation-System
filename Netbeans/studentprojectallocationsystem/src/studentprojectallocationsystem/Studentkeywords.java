@@ -78,8 +78,7 @@ public class Studentkeywords {
             if (Integer.parseInt(PrefscoresList.get(i).getPrefScore()) >= 60) {
                 String studentId = PrefscoresList.get(i).getStudentId();
                 String supervisorId = PrefscoresList.get(i).getSupervisorId();
-                SupervisorSql.insertAllocStudent(studentId, supervisorId);
-                Prefscore.removeAll(PrefscoresList, PrefscoresList.get(i));
+                SupervisorSql.checkSupervisorAllocation(studentId, supervisorId,i);
                 i--;
                 //System.out.println("current: " + i);
                 System.out.println("PrefList: " + PrefscoresList);

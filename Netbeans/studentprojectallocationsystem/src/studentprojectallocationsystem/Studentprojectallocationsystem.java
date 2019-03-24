@@ -36,13 +36,13 @@ public class Studentprojectallocationsystem {
     
     StudentSql.selectUnallocatedStudents();
     
-    SupervisorSql.createSupervisorpref();
+    //SupervisorSql.createSupervisorpref();
     
     Studentkeywords.shuffleStudents();
     
     Studentkeywords.matchkeywords();
     
-    Studentkeywords.test();
+   // Studentkeywords.test();
     
     Studentkeywords.findBestSupervisor();
     

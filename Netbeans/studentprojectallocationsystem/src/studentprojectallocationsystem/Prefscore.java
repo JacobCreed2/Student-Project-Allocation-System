@@ -74,11 +74,23 @@ public class Prefscore {
             
     };
         
-    static void removeAll(ArrayList<Prefscore> list, Prefscore student) {
+    static void removeStudent(ArrayList<Prefscore> list, Prefscore student) {
         for (int j = 0; j < list.size(); j++) {
             String student1 = student.getStudentId();
             String student2 = list.get(j).getStudentId();
             if (Objects.equals(student1, student2)) {
+                list.remove(j);
+                j--;
+                //System.out.println("List: " + list);
+            }
+        }
+    }
+    
+        static void removeSupervisor(ArrayList<Prefscore> list, Prefscore supervisor) {
+        for (int j = 0; j < list.size(); j++) {
+            String supervisor1 = supervisor.getSupervisorId();
+            String supervisor2 = list.get(j).getSupervisorId();
+            if (Objects.equals(supervisor1, supervisor2)) {
                 list.remove(j);
                 j--;
                 //System.out.println("List: " + list);

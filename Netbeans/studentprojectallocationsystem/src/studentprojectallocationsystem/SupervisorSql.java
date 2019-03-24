@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import static studentprojectallocationsystem.Studentkeywords.canAllocate;
 import static studentprojectallocationsystem.StudentSql.StudentsList;
+import static studentprojectallocationsystem.Studentkeywords.PrefscoresList;
 
 /**
  *
@@ -97,16 +98,15 @@ public class SupervisorSql {
             for (int j = 0; j < StudentsList.size(); j++) {
                 String Id_StudentList = StudentsList.get(j).getStudentId();
                 if (Id_StudentList.equals(studentId)) {
-                    String supId = supervisorId;
                     String Allocated = "1";
 
                     PreparedStatement pstmt = con.prepareStatement("UPDATE projects SET SupervisorId = ?, Allocated = ? WHERE StudentId = ?");
-                    pstmt.setString(1, supId);
+                    pstmt.setString(1, supervisorId);
                     pstmt.setString(2, Allocated);
                     pstmt.setString(3, studentId);
                     pstmt.executeUpdate();
                     PreparedStatement pstmt1 = con.prepareStatement("UPDATE supervisors SET CurrentAllocation = CurrentAllocation + 1 WHERE Id = ?");
-                    pstmt1.setString(1, supId);
+                    pstmt1.setString(1, supervisorId);
                     pstmt1.executeUpdate();
                     
                 }
@@ -116,6 +116,30 @@ public class SupervisorSql {
         } catch (Exception e) {
             System.out.println(e);
         }
+        
+    }
+    
+    static void checkSupervisorAllocation(String studentId, String supervisorId, int prefi) {
+
+        for (int i = 0; i < SupervisorsList.size(); i++) {
+            String Id_SupervisorId = SupervisorsList.get(i).getSupervisorId();
+            if (Id_SupervisorId.equals(supervisorId)) {
+                int max = Integer.parseInt(SupervisorsList.get(i).getMaxAllocation());
+                int current = Integer.parseInt(SupervisorsList.get(i).getCurrentAllocation());
+                int updated = current + 1;
+                if (current < max) {
+                    SupervisorsList.get(i).setCurrentAllocation(Integer.toString(updated));
+                    insertAllocStudent(studentId, supervisorId);
+                    Prefscore.removeStudent(PrefscoresList, PrefscoresList.get(prefi));
+                } else if (current == max) {
+                    SupervisorsList.remove(i);
+                    Prefscore.removeSupervisor(PrefscoresList, PrefscoresList.get(prefi));
+                    System.out.println("Removed: " + PrefscoresList);
+                }
+
+            }
+        }
+
     }
 
     static void createSupervisorpref() {
