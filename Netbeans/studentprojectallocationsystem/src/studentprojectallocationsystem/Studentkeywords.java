@@ -48,7 +48,6 @@ public class Studentkeywords {
                     System.out.println(Interest);
 
                     if (StudentSql.unallocatedstudents.get(i).getProjectDetails().toLowerCase().contains(Interest.toLowerCase())) {
-                        //System.out.println("StudentId: " + StudentSql.unallocatedstudents.get(i).getStudentId());
                         countInterests++;
                         System.out.println("Interests found: " + countInterests);
                     }
@@ -56,7 +55,6 @@ public class Studentkeywords {
                 prefScore = (int) ((countInterests / totalInterests) * 100);
                 System.out.println(prefScore);
                 String prefScoreStr = Integer.toString(prefScore);
-                //System.out.println(StudentSql.students.get(i).getProjectDetails());
 
                 PrefscoresList.add(new Prefscore(studentId, supervisorId, prefScoreStr));
             }
@@ -65,7 +63,6 @@ public class Studentkeywords {
                 System.out.println("StudentId:" + Prefscore.getStudentId() + " SupervisorId:" + Prefscore.getSupervisorId() + " PrefScore:" + Prefscore.getPrefScore());
             });
         }
-        //prefScores.add(new Prefscore("1","0","0"));
     }
 
     static void findBestSupervisor() {
@@ -87,19 +84,4 @@ public class Studentkeywords {
             }
         }
     }
-
-    static void test() {
-        float max = Float.parseFloat(PrefscoresList.get(0).getPrefScore());
-
-        int minIndex = 0, maxIndex = 0;
-
-        for (int i = 0; i < PrefscoresList.size(); i++) {
-            if (Float.parseFloat(PrefscoresList.get(i).getPrefScore()) > max) {
-                max = Float.parseFloat(PrefscoresList.get(i).getPrefScore());
-                maxIndex = i;
-            }
-        }
-        System.out.println(max);
-    }
-
 }

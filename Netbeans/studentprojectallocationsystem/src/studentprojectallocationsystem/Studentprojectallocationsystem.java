@@ -22,31 +22,19 @@ public class Studentprojectallocationsystem {
     
     SupervisorSql.selectSupervisors();
     
-    //Studentkeywords.runNLP();
-    
-    //Studentkeywords.cleanString();
-    
     StudentSql.createRandAllocTable();
     
     StudentSql.createNeedsAllocTable();
     
-    StudentSql.createAllocTable();
-    
-    StudentSql.insertAllocTables();
+    StudentSql.sortStudentsCurrentAllocation();
     
     StudentSql.selectUnallocatedStudents();
-    
-    //SupervisorSql.createSupervisorpref();
     
     Studentkeywords.shuffleStudents();
     
     Studentkeywords.matchkeywords();
     
-   // Studentkeywords.test();
-    
     Studentkeywords.findBestSupervisor();
-    
-    //SupervisorSql.insertPrefTables();
        
     }
     

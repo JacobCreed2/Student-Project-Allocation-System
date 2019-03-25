@@ -28,7 +28,6 @@ public class SupervisorSql {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/spa-db", "root", "");
-//here sonoo is database name, root is username and password  
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM supervisors WHERE currentAllocation < maxAllocation");
             while (rs.next()) {
@@ -40,7 +39,6 @@ public class SupervisorSql {
                 String maxAllocation = rs.getString("maxAllocation");
 
                 SupervisorsList.add(new Supervisor(supervisorId, supervisorFirstname, supervisorLastname, projectInterests, currentAllocation, maxAllocation));
-                //System.out.println(students);
             }
 
             SupervisorsList.forEach(supervisor -> {
@@ -51,42 +49,6 @@ public class SupervisorSql {
         } catch (Exception e) {
             System.out.println(e);
         }
-    }
-
-    static void insertRandomTables() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/spa-db", "root", "");
-
-            String studentId = canAllocate.get(0).getStudentId();
-            String supervisorId = canAllocate.get(0).getSupervisorId();
-            for (int j = 0; j < StudentsList.size(); j++) {
-                String studentStudentId = StudentsList.get(j).getStudentId();
-                if (studentStudentId.equals(studentId)) {
-                    String studentFirstname = StudentsList.get(j).getStudentFirstname();
-                    String studentLastname = StudentsList.get(j).getStudentLastname();
-                    String projectId = StudentsList.get(j).getProjectId();
-                    String projectTitle = StudentsList.get(j).getProjectTitle();
-                    String projectDetails = StudentsList.get(j).getProjectDetails();
-
-                    PreparedStatement pstmt = con.prepareStatement("INSERT INTO randomallocation (StudentId,SupervisorId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                    pstmt.setString(1, studentId);
-                    pstmt.setString(2, supervisorId);
-                    pstmt.setString(3, studentFirstname);
-                    pstmt.setString(4, studentLastname);
-                    pstmt.setString(5, projectId);
-                    pstmt.setString(6, projectTitle);
-                    pstmt.setString(7, projectDetails);
-                    pstmt.executeUpdate();
-                }
-            }
-
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
     }
 
     static void insertAllocStudent(String studentId, String supervisorId) {
@@ -108,7 +70,7 @@ public class SupervisorSql {
                     PreparedStatement pstmt1 = con.prepareStatement("UPDATE supervisors SET CurrentAllocation = CurrentAllocation + 1 WHERE Id = ?");
                     pstmt1.setString(1, supervisorId);
                     pstmt1.executeUpdate();
-                    
+
                 }
             }
 
@@ -116,9 +78,9 @@ public class SupervisorSql {
         } catch (Exception e) {
             System.out.println(e);
         }
-        
+
     }
-    
+
     static void assignStudent(String studentId, String supervisorId, int prefi) {
 
         for (int i = 0; i < SupervisorsList.size(); i++) {
@@ -141,8 +103,8 @@ public class SupervisorSql {
         }
 
     }
-    
-        static void randomlyAssignStudent(String studentId, String supervisorId, int prefi) {
+
+    static void randomlyAssignStudent(String studentId, String supervisorId, int prefi) {
 
         for (int i = 0; i < SupervisorsList.size(); i++) {
             String Id_SupervisorId = SupervisorsList.get(i).getSupervisorId();
@@ -159,24 +121,7 @@ public class SupervisorSql {
                     Prefscore.removeSupervisor(PrefscoresList, PrefscoresList.get(prefi));
                     System.out.println("Removed: " + PrefscoresList);
                 }
-
             }
         }
-
     }
-
-    static void createSupervisorpref() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/spa-db", "root", "");
-            Statement stmt = con.createStatement();
-            stmt.execute("DROP TABLE supervisorpref");
-            stmt.execute("CREATE TABLE supervisorpref(Id int NOT NULL AUTO_INCREMENT, StudentId int, SupervisorId int, PrefScore float, PRIMARY KEY(Id))");
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
 }

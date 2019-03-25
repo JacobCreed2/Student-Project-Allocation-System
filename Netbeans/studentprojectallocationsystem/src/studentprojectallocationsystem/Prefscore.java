@@ -81,7 +81,6 @@ public class Prefscore {
             if (Objects.equals(student1, student2)) {
                 list.remove(j);
                 j--;
-                //System.out.println("List: " + list);
             }
         }
     }
@@ -93,7 +92,6 @@ public class Prefscore {
             if (Objects.equals(supervisor1, supervisor2)) {
                 list.remove(j);
                 j--;
-                //System.out.println("List: " + list);
             }
         }
     }
