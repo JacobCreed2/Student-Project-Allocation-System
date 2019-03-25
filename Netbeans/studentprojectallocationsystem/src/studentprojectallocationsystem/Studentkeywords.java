@@ -72,17 +72,18 @@ public class Studentkeywords {
 
         Collections.sort(PrefscoresList, Prefscore.sortPrefscore);
         System.out.println(PrefscoresList);
-        
-        for (int i = 0; i < PrefscoresList.size();i++) {
-            //System.out.println("0: " + i);
+
+        for (int i = 0; i < PrefscoresList.size(); i++) {
+            String studentId = PrefscoresList.get(i).getStudentId();
+            String supervisorId = PrefscoresList.get(i).getSupervisorId();
             if (Integer.parseInt(PrefscoresList.get(i).getPrefScore()) >= 60) {
-                String studentId = PrefscoresList.get(i).getStudentId();
-                String supervisorId = PrefscoresList.get(i).getSupervisorId();
-                SupervisorSql.checkSupervisorAllocation(studentId, supervisorId,i);
+                SupervisorSql.assignStudent(studentId, supervisorId, i);
                 i--;
-                //System.out.println("current: " + i);
                 System.out.println("PrefList: " + PrefscoresList);
-                //System.out.println(PrefscoresList.size());
+            } else {
+                SupervisorSql.randomlyAssignStudent(studentId, supervisorId, i);
+                i--;
+                System.out.println("PrefList: " + PrefscoresList);
             }
         }
     }

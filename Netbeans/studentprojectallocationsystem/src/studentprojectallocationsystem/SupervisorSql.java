@@ -119,7 +119,30 @@ public class SupervisorSql {
         
     }
     
-    static void checkSupervisorAllocation(String studentId, String supervisorId, int prefi) {
+    static void assignStudent(String studentId, String supervisorId, int prefi) {
+
+        for (int i = 0; i < SupervisorsList.size(); i++) {
+            String Id_SupervisorId = SupervisorsList.get(i).getSupervisorId();
+            if (Id_SupervisorId.equals(supervisorId)) {
+                int max = Integer.parseInt(SupervisorsList.get(i).getMaxAllocation());
+                int current = Integer.parseInt(SupervisorsList.get(i).getCurrentAllocation());
+                int updated = current + 1;
+                if (current < max) {
+                    SupervisorsList.get(i).setCurrentAllocation(Integer.toString(updated));
+                    insertAllocStudent(studentId, supervisorId);
+                    Prefscore.removeStudent(PrefscoresList, PrefscoresList.get(prefi));
+                } else if (current == max) {
+                    SupervisorsList.remove(i);
+                    Prefscore.removeSupervisor(PrefscoresList, PrefscoresList.get(prefi));
+                    System.out.println("Removed: " + PrefscoresList);
+                }
+
+            }
+        }
+
+    }
+    
+        static void randomlyAssignStudent(String studentId, String supervisorId, int prefi) {
 
         for (int i = 0; i < SupervisorsList.size(); i++) {
             String Id_SupervisorId = SupervisorsList.get(i).getSupervisorId();
