@@ -5,6 +5,9 @@
  */
 package studentprojectallocationsystem;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /**
  *
  * @author jakec
@@ -74,14 +77,6 @@ public class Student {
 
     public void setProjectDetails(String projectDetails) {
         this.projectDetails = projectDetails;
-    }
-    
-    public String getProjectNLP() {
-        return projectNLP;
-    }
-
-    public void setProjectNLP(String projectNLP) {
-        this.projectNLP = projectNLP;
     }
 
     public String getProjectAllocated() {
