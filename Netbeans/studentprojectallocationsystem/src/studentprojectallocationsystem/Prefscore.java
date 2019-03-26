@@ -14,7 +14,7 @@ import java.util.Objects;
  * @author jakec
  */
 public class Prefscore {
-        String studentId;
+    String studentId;
     String supervisorId;
     String prefScore;
 
@@ -95,7 +95,7 @@ public class Prefscore {
             }
         }
     }
-    
+        
     @Override
     public String toString() {
         return "Unallocated{" + "studentId=" + studentId + ", supervisorId=" + supervisorId + ", prefScore=" + prefScore + '}';

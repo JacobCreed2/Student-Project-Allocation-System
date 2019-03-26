@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
+import static studentprojectallocationsystem.StudentSql.RandomstudentsList;
 import static studentprojectallocationsystem.StudentSql.unallocatedstudents;
 import static studentprojectallocationsystem.SupervisorSql.SupervisorsList;
 import static studentprojectallocationsystem.StudentSql.StudentsList;
@@ -20,7 +21,6 @@ import static studentprojectallocationsystem.StudentSql.StudentsList;
 public class Studentkeywords {
 
     public static ArrayList<Prefscore> PrefscoresList = new ArrayList<Prefscore>();
-    public static ArrayList<Prefscore> canAllocate = new ArrayList<Prefscore>();
 
     static void shuffleStudents() {
 
@@ -73,15 +73,16 @@ public class Studentkeywords {
         for (int i = 0; i < PrefscoresList.size(); i++) {
             String studentId = PrefscoresList.get(i).getStudentId();
             String supervisorId = PrefscoresList.get(i).getSupervisorId();
-            if (Integer.parseInt(PrefscoresList.get(i).getPrefScore()) >= 60) {
-                SupervisorSql.assignStudent(studentId, supervisorId, i);
-                i--;
-                System.out.println("PrefList: " + PrefscoresList);
-            } else {
-                SupervisorSql.randomlyAssignStudent(studentId, supervisorId, i);
-                i--;
-                System.out.println("PrefList: " + PrefscoresList);
-            }
+            SupervisorSql.allocateStudents(studentId, supervisorId, i);
+            i--;
+            System.out.println("PrefList: " + PrefscoresList);
+        }
+        
+        for (int i = 0; i < RandomstudentsList.size(); i++) {
+            String studentId = RandomstudentsList.get(i).getStudentId();
+            SupervisorSql.allocateRandomStudents(studentId, i);
+            i--;
+            System.out.println("Random: " + RandomstudentsList);
         }
     }
 }

@@ -18,6 +18,7 @@ import java.util.Set;
 public class StudentSql {
 
     public static ArrayList<Student> unallocatedstudents = new ArrayList<Student>();
+    public static ArrayList<RandomStudent> RandomstudentsList = new ArrayList<RandomStudent>();
     public static ArrayList<Student> StudentsList = new ArrayList<Student>();
 
     static void selectAllStudents() {
@@ -76,6 +77,37 @@ public class StudentSql {
 
             unallocatedstudents.forEach(student -> {
                 System.out.println("Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle() + " SupervisorId " + student.getSupervisorId());
+            });
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+    
+        static void selectRandomAllocationStudents() {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/spa-db", "root", "");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM randomallocation");
+            while (rs.next()) {
+                String studentId = rs.getString("StudentId");
+                String supervisorId = rs.getString("SupervisorId");
+                String studentFirstname = rs.getString("firstname");
+                String studentLastname = rs.getString("lastname");
+                String projectId = rs.getString("projectId");
+                String projectTitle = rs.getString("projecttitle");
+                String projectDetails = rs.getString("projectdetails");
+
+                RandomstudentsList.add(new RandomStudent(studentId, supervisorId, studentFirstname, studentLastname, projectId, projectTitle, projectDetails));
+            }
+
+            RandomstudentsList.forEach(student -> {
+                System.out.println("Random: " + "Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle() + " SupervisorId " + student.getSupervisorId());
             });
 
             con.close();

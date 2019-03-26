@@ -30,6 +30,8 @@ public class Studentprojectallocationsystem {
     
     StudentSql.selectUnallocatedStudents();
     
+    StudentSql.selectRandomAllocationStudents();
+    
     Studentkeywords.shuffleStudents();
     
     Studentkeywords.matchkeywords();
