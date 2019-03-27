@@ -1,17 +1,35 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand text-white" >Admin Dashboard</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav mr-auto">
-      <a class="nav-item nav-link" id="Students" onClick="location.href='students.php'">Students</a>
-      <a class="nav-item nav-link" id="Supervisors" href="supervisors.php">Supervisors</a>
-      <a class="nav-item nav-link" id="Projects" href="projects.php">Projects</a>
-      <a class="nav-item nav-link" id="Settings" href="settings.php">Admin Settings</a>
-      <a class="nav-item nav-link" id="Testing" href="testing.php">Testing</a>
-    </div>
-        <div class="navbar-nav ml-auto">
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" id="Students" href="students.php">Students</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="supervisors.php">Supervisors</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Projects
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="allProjects.php">All Projects</a>
+          <a class="dropdown-item" href="currentProjects.php">Projects Currently Supervising</a>
+          <a class="dropdown-item" href="pendingProjects.php">Pending Projects</a>
+          <a class="dropdown-item" href="rejectedProjects">Rejected Projects</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="adminSettings.php">Admin Settings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="testing.php">Testing</a>
+      </li>
+    </ul>
+    <div class="navbar-nav ml-auto">
       <a class="nav-item nav-link" id="Username" onClick="location.href='userAdmin.php'"><?php echo $userName; ?></a>
     </div>
   </div>
