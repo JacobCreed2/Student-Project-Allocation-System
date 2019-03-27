@@ -44,6 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   }else {
      $error = "Your Login Name or Password is invalid";
      echo $error;
+     echo "\n <a href='http://localhost/student-project-allocation-system'> Click here to return to login </a>";
   }
 
 }
