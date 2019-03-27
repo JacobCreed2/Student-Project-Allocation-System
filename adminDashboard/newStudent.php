@@ -1,13 +1,3 @@
-<?php
-   include('../resources/styling.html');
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Student Project Allocation System</title>
-</head>
-<body>
-
 <form class="needs-validation" action="../sql/createStudent.php" method="post" novalidate>
   <div class="form-row">
     <div class="col-md-4 mb-3">
@@ -59,6 +49,3 @@
   }, false);
 })();
 </script>
-
-</body>
-</html>
