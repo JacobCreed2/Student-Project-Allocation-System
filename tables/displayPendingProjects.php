@@ -11,7 +11,6 @@ if ($result->num_rows > 0) {
         echo "<td>". $row["FirstName"] . " " . $row["LastName"] . "</td>";
         echo "<td>". $row["ProjectTitle"] . "</td>";
         echo "<td>". $row["ProjectDetails"] . "</td>";
-        echo "<td><button type='button' class='btn btn-primary' onClick=\"window.location.href='../sql/acceptProject.php'\">Accept</button></td>";
         echo "</tr>";
     }
 } else {
