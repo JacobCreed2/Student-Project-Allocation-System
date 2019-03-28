@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
         echo '<tr>';
         echo "<td>". $row["FirstName"] . " " . $row["LastName"] . "</td>";
         echo "<td>". $title . "</td>";
-        echo "<td>". $details . "</td>";
+        echo "<td>". nl2br($details) . "</td>";
         echo "<td>". $check . "</td>";
         echo "</tr>";
     }
