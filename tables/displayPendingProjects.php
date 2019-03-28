@@ -1,6 +1,6 @@
 <?php
 $supervisorId = $id; 
-$sql = "SELECT students.Id, students.FirstName, students.LastName, ProjectTitle, ProjectDetails FROM projects INNER JOIN students ON projects.StudentId = students.Id WHERE projects.SupervisorId = '$supervisorId'";
+$sql = "SELECT students.Id, students.FirstName, students.LastName, ProjectTitle, ProjectDetails FROM projects INNER JOIN students ON projects.StudentId = students.Id WHERE projects.SupervisorId = '$supervisorId' && projects.Allocated = '0'";
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
@@ -10,7 +10,9 @@ if ($result->num_rows > 0) {
         echo '<tr>';
         echo "<td>". $row["FirstName"] . " " . $row["LastName"] . "</td>";
         echo "<td>". $row["ProjectTitle"] . "</td>";
-        echo "<td>". $row["ProjectDetails"] . "</td>";
+        echo "<td>". nl2br($row["ProjectDetails"]) . "</td>";
+        echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#Accept' onclick=window.location.href='../sql/acceptProject.php'>Accept</button><br><br>
+        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#Reject'>Reject</button></td>";
         echo "</tr>";
     }
 } else {
