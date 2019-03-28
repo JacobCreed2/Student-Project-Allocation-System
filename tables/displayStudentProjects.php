@@ -1,44 +1,49 @@
 <?php
-$studentId = $id; 
-$sql = "SELECT supervisors.FirstName, supervisors.LastName, ProjectTitle, ProjectDetails FROM projects INNER JOIN supervisors ON projects.SupervisorId = supervisors.Id WHERE projects.StudentId = '$studentId'";
+$studentId = $id;
+$sql = "SELECT ProjectTitle, ProjectDetails, rejectedprojects.StudentId, rejectedprojects.SupervisorId, rejectedprojects.Reason, rejectedprojects.Resolved FROM projects INNER JOIN rejectedprojects ON rejectedprojects.StudentId = projects.StudentId WHERE projects.StudentId = '$studentId'";
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
-    echo '<div class="container>"';
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        $supervisorFirst = $row["FirstName"];
-        $supervisorLast = $row["LastName"];
-        $projectTitle = $row["ProjectTitle"];
-        $projectDetails = $row["ProjectDetails"];
-    }
-    echo "</div>";
+	while($row = $result->fetch_assoc()) {
+		$projectTitle = $row["ProjectTitle"];
+		$projectDetails = $row["ProjectDetails"];
+		$rejectStudentId = $row["StudentId"];
+		$rejectSupervisorId = $row["SupervisorId"];
+		$reason = $row["Reason"];
+		$resolved = $row["Resolved"];
+	}
+}
+if (!empty($rejectStudentId) && $resolved == '0') {
+	$sql1 = "SELECT FirstName, LastName FROM supervisors INNER JOIN rejectedprojects ON rejectedprojects.SupervisorId = supervisors.Id WHERE rejectedprojects.StudentId = '$studentId'";
+	$result = $db->query($sql1);
+
+	if ($result->num_rows > 0) {
+		while($row = $result->fetch_assoc()) {
+			$supervisorFirst = $row["FirstName"];
+			$supervisorLast = $row["LastName"];
+		}
+	} else {
+		echo "0 results";
+	//echo print_r($row);
+	}
+	include ('displayRejectedProject.php'); 
+}else if (empty($rejectStudentId) || $resolved == '1') {
+	$sql = "SELECT ProjectTitle, ProjectDetails, Allocated, supervisors.FirstName, supervisors.LastName FROM projects INNER JOIN supervisors ON projects.SupervisorId = supervisors.Id WHERE projects.StudentId = '$studentId'";
+$result = $db->query($sql);
+
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$projectTitle = $row["ProjectTitle"];
+		$projectDetails = $row["ProjectDetails"];
+		$supervisorFirst = $row["FirstName"];
+		$supervisorLast = $row["LastName"];
+		$allocated = $row["Allocated"];
+	}
 } else {
-    echo "0 results";
+	echo "0 results";
+	echo print_r($row);
+}
+	include ('displayProject.php');
 }
 $db->close();
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-
-</head>
-<body>
-<div class="container">
-	<div class="row">
-		<div class="col">
-			<div class="h3">
-			Project Title
-			</div>
-		</div>
-	</div>
-	<div class="row">	
-		<div class="col">
-			<?php 
-			echo $projectTitle;
-			?>
-		</div>
-	</div>
-</div>
-</body>
-</html>
