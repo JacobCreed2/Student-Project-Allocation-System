@@ -16,12 +16,12 @@
                 <th>Student</th>
                 <th>Project Title</th>
                 <th>Project Description</th>
-                <th>Accept?</th>
+                <th>Options</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            include ('../tables/displaySupervisorProjects.php');
+            include ('../tables/displayPendingProjects.php');
              ?>
         </tbody>
         <tfoot>
@@ -29,7 +29,7 @@
                 <th>Student</th>
                 <th>Project Title</th>
                 <th>Project Description</th>
-                <th>Accept?</th>
+                <th>Options</th>
             </tr>
         </tfoot>
 </table>
@@ -37,5 +37,6 @@
 	    $('#projects').DataTable( {
     } );
 </script>
+<?php include('../shared/rejectProjectForm.php'); ?>
 </body>
 </html>

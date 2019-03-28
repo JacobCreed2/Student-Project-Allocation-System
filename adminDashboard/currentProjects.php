@@ -38,6 +38,6 @@
 	    $('#projects').DataTable( {
     } );
 </script>
-<?php include('../sharedPages/rejectProjectForm.php'); ?>
+<?php include('../shared/rejectAllocProjectForm.php');?>
 </body>
 </html>

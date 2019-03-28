@@ -16,12 +16,12 @@
                 <th>Student</th>
                 <th>Project Title</th>
                 <th>Project Description</th>
-                <th>Accept?</th>
+                <th>Reason</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            include ('../tables/displaySupervisorProjects.php');
+            include ('../tables/displayRejectedProjects.php');
              ?>
         </tbody>
         <tfoot>
@@ -29,7 +29,7 @@
                 <th>Student</th>
                 <th>Project Title</th>
                 <th>Project Description</th>
-                <th>Accept?</th>
+                <th>Reason</th>
             </tr>
         </tfoot>
 </table>
