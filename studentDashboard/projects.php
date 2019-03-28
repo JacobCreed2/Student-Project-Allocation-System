@@ -13,14 +13,7 @@
 document.getElementById("Projects").style.color = "white";
 </script>
 <?php
-include ('../sql/selectStudentProject.php');
-$findId = findId($db,$id);
-
-if (empty($findId)) {
-	include ('newProject.php');
-}else {
 	include ('../tables/displayStudentProjects.php');
-}
 ?>
 
 </body>
