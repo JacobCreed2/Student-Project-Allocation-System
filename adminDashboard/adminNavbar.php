@@ -5,11 +5,23 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" id="Students" href="students.php">Students</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Students
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="allStudents.php">All Students</a>
+          <a class="dropdown-item" href="students.php">Create a Student</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="supervisors.php">Supervisors</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Supervisors
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="allSupervisors.php">All Supervisors</a>
+          <a class="dropdown-item" href="supervisors.php">Create a Supervisor</a>
+        </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -19,7 +31,7 @@
           <a class="dropdown-item" href="allProjects.php">All Projects</a>
           <a class="dropdown-item" href="currentProjects.php">Projects Currently Supervising</a>
           <a class="dropdown-item" href="pendingProjects.php">Pending Projects</a>
-          <a class="dropdown-item" href="rejectedProjects">Rejected Projects</a>
+          <a class="dropdown-item" href="rejectedProjects.php">Rejected Projects</a>
         </div>
       </li>
       <li class="nav-item">
