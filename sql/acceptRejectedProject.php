@@ -8,7 +8,7 @@ $supervisorId = mysqli_real_escape_string($db,$id);
 echo $_SESSION['login_user'];
 echo $id;
 if ($currentAllocation < $maxAllocation) {
-  $sql = "UPDATE projects SET Allocated = '1' WHERE StudentId = '$rowId'";
+  $sql = "UPDATE projects SET SupervisorId = '$supervisorId', Allocated = '1' WHERE StudentId = '$rowId'";
   if ($db->query($sql) === TRUE) {
     echo "Project updated successfully\n";
 
@@ -23,7 +23,7 @@ if ($currentAllocation < $maxAllocation) {
     echo "Error: " . $sql1 . "<br>" . $db->error;
   }
 }elseif ($currentAllocation == $maxAllocation) {
-  header('Location: http://localhost/student-project-allocation-system/adminDashboard/pendingProjects.php');
+  header('Location: http://localhost/student-project-allocation-system/adminDashboard/rejectedProjects.php');
 }
 $db->close();
 ?>
