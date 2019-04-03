@@ -17,7 +17,6 @@
                 <th>Student</th>
                 <th>Project Title</th>
                 <th>Project Description</th>
-                <th>Options</th>
             </tr>
         </thead>
         <tbody>
@@ -30,12 +29,12 @@
                 <th>Student</th>
                 <th>Project Title</th>
                 <th>Project Description</th>
-                <th>Options</th>
             </tr>
         </tfoot>
 </table>
 <script>
 	    $('#projects').DataTable( {
+            'searching': false
     } );
 </script>
 <?php include('../shared/rejectAllocProjectForm.php');?>

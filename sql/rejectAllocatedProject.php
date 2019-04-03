@@ -25,7 +25,7 @@ if ($db->query($sql1) === TRUE) {
   $sql2 = "UPDATE supervisors SET CurrentAllocation = CurrentAllocation - 1 WHERE Id = '$supervisorId'";
 if ($db->query($sql2) === TRUE) {
     echo "Supervisors updated\n";
-    header('Location: http://localhost/student-project-allocation-system/adminDashboard/currentProjects.php');
+    header('Location: ../adminDashboard/currentProjects.php');
 
 } else {
     echo "Error: " . $sql2 . "<br>" . $db->error;
