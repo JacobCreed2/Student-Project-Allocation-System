@@ -9,7 +9,7 @@
 </head>
 <body>
 <?php include ('adminNavbar.php'); ?>
-<h1>All Projects</h1>
+<h1>All Supervisors</h1>
 <table id="projects" class="display" style="width:100%">
         <thead>
             <tr>
