@@ -9,7 +9,7 @@
       <a class="nav-item nav-link" id="Supervisors" href="supervisors.php">Supervisors</a>
     </div>
         <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" id="Username" onClick="location.href='userStudent.php'"><?php echo $userName; ?></a>
+      <a class="nav-item nav-link" id="Username" onClick="location.href='../logout.php'">Sign Out</a>
     </div>
   </div>
 </nav>
