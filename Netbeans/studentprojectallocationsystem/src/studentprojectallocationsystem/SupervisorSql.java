@@ -23,7 +23,7 @@ public class SupervisorSql {
 
     public static ArrayList<Supervisor> SupervisorsList = new ArrayList<Supervisor>();
 
-    static void selectSupervisors() {
+    static void selectUnallocatedSupervisors() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(

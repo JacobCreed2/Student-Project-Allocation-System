@@ -20,7 +20,7 @@ public class Studentprojectallocationsystem {
         
     StudentSql.selectAllStudents();
     
-    SupervisorSql.selectSupervisors();
+    SupervisorSql.selectUnallocatedSupervisors();
     
     StudentSql.createRandAllocTable();
     
