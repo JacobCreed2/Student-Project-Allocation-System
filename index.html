@@ -7,17 +7,24 @@
 	<link rel="stylesheet" type="text/css" href="./CSS/login.css">
 </head>
 <body class="text-center">
-	<form class="form-signin" action="login.php" method="post">
-		<h1>Welcome to the Student Project Allocation System</h1>
-		<br>
-		<input type="text" class="form-control" name="username" placeholder="Username">
-		<input type="Password" class="form-control" name="password" placeholder="Password">
-		<br>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-	</form>
+	<div class="col">
+		<form class="form-signin" action="login.php" method="post">
+			<h1>Welcome to the Student Project Allocation System</h1>
+			<br>
+			<input type="text" class="form-control" name="username" placeholder="Username">
+			<input type="Password" class="form-control" name="password" placeholder="Password">
+			<br>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+			<a href="createAccount.php" class="btn btn-lg btn-primary btn-block" role="button">Create an account</a>
+		</form>
+	</div>
 </body>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script> $(function () {
+	$('[data-toggle="popover"]').popover()
+})
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
 </html>
