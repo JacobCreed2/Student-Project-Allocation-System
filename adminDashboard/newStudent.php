@@ -1,3 +1,15 @@
+<?php
+   include('../resources/session.php');
+   include('../resources/styling.html');
+?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Project Allocation System</title>
+</head>
+<body>
+<?php include ('adminNavbar.php'); ?>
+<h1>Create New Student</h1>
 <form class="needs-validation" action="../sql/createStudent.php" method="post" novalidate>
   <div class="form-row">
     <div class="col-md-4 mb-3">
@@ -12,6 +24,15 @@
     <div class="col-md-4 mb-3">
       <label for="lastName">Last name</label>
       <input type="text" class="form-control" id="lastName" name="lastname" placeholder="Last name" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="lastName">Password</label>
+      <input type="text" class="form-control" id="password" name="password" placeholder="Password" required>
       <div class="valid-feedback">
         Looks good!
       </div>
@@ -49,3 +70,5 @@
   }, false);
 })();
 </script>
+</body>
+</html>
