@@ -5,7 +5,6 @@ include ('../resources/session.php');
   $supervisorId = mysqli_real_escape_string($db,$id);// supevisor Id from the session.
   $projectId = mysqli_real_escape_string($db,$_SESSION['projectId']);// project Id stored in the session 
   $reason = mysqli_real_escape_string($db,$_POST['reason']);// reason for rejecting the project. Posted from the form.
-  //echo $_SESSION['rowId'];
   echo $_SESSION['login_user'];
   echo $id;
   $sql = "INSERT INTO rejectedprojects (StudentId, SupervisorId, ProjectId, Reason, Resolved) VALUES ('$rowId', '$supervisorId', '$projectId', '$reason', '0')";// inserts reason into rejected projects
@@ -18,6 +17,7 @@ if ($db->query($sql) === TRUE) {
   $sql1 = "UPDATE projects SET SupervisorId = null, Allocated = '0' WHERE StudentId = '$rowId'";
 if ($db->query($sql1) === TRUE) {
     echo "Project updated successfully\n";
+    header("Location: ../adminDashboard/currentProjects.php")
 
 } else {
     echo "Error: " . $sql1 . "<br>" . $db->error;

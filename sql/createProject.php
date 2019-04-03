@@ -30,17 +30,14 @@ $findID = findId($db,$studentId);
 if ($supervisor == "noselection") {
   echo "No selection made";
 }else{
-  if (empty($findID)) {
-    $sql = "INSERT INTO projects (StudentId, SupervisorId, ProjectTitle, ProjectDetails, ProjectCreated) VALUES ('$studentId', '$supervisor', '$title', '$details', '$dateCreated')";
+    $sql = "UPDATE projects SET SupervisorId = '$supervisor', ProjectTitle = '$title', ProjectDetails = '$details', ProjectCreated = '$dateCreated' WHERE StudentId = '$studentId'";
     if ($db->query($sql) === TRUE) {
       echo "New record created successfully\n";
+      header("Location: ../studentDashboard/projects.php");
 
     } else {
       echo "Error: " . $sql . "<br>" . $db->error;
     }
-  }else {
-    echo "Only one project per student";
-  }
 }
 $db->close();
 //}
