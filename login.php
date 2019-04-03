@@ -5,10 +5,10 @@ session_start();
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   // username and password sent from form 
   
-  $myusername = mysqli_real_escape_string($db,$_POST['username']);
-  $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+  $formUsername = mysqli_real_escape_string($db,$_POST['username']);
+  $formPassword = mysqli_real_escape_string($db,$_POST['password']); 
   
-  $sql = "SELECT Id, UserTypeId FROM users WHERE Username = '$myusername' and Password = '$mypassword'";
+  $sql = "SELECT Id, UserTypeId, Password FROM users WHERE Username = '$formUsername'";
   $result = mysqli_query($db,$sql);
   if (!$result) {
     printf("Error: %s\n", mysqli_error($db));
@@ -17,23 +17,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
   $UserType = $row['UserTypeId'];
+  $password = $row['Password'];
   
   
   $count = mysqli_num_rows($result);
   // If result matched $myusername and $mypassword, table row must be 1 row
 
-  if($count == 1) {
-     $_SESSION['login_user'] = $myusername;
+  if(password_verify($formPassword, $password)) {
+     $_SESSION['login_user'] = $formUsername;
 
       switch ($UserType) {
       case '1':
         header("location: ./adminDashboard/adminDash.php");
         break;
       case '2':
-        header("location: ./supervisorDashboard/supervisorDash.php");
+        header("location: ./supervisorDashboard/pendingProjects.php");
         break;
       case '3':
-        header("location: ./studentDashboard/studentDash.php");
+        header("location: ./studentDashboard/projects.php");
         break;
       
       default:
