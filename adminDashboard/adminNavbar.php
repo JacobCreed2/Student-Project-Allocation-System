@@ -11,7 +11,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="allStudents.php">All Students</a>
-          <a class="dropdown-item" href="students.php">Create a Student</a>
+          <a class="dropdown-item" href="newStudent.php">Create a Student</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -20,7 +20,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="allSupervisors.php">All Supervisors</a>
-          <a class="dropdown-item" href="supervisors.php">Create a Supervisor</a>
+          <a class="dropdown-item" href="newSupervisor.php">Create a Supervisor</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -42,7 +42,7 @@
       </li>
     </ul>
     <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" id="Username" onClick="location.href='userAdmin.php'"><?php echo $userName; ?></a>
+      <a class="nav-item nav-link" id="Username" onClick="location.href='../logout.php'">Sign Out</a>
     </div>
   </div>
 </nav>
