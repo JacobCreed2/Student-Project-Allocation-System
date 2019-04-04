@@ -32,6 +32,7 @@
           <a class="dropdown-item" href="currentProjects.php">Projects Currently Supervising</a>
           <a class="dropdown-item" href="pendingProjects.php">Pending Projects</a>
           <a class="dropdown-item" href="rejectedProjects.php">Rejected Projects</a>
+          <a class="dropdown-item" href="projectIdeas.php">Add Project Ideas & Interests</a>
         </div>
       </li>
       <li class="nav-item">
@@ -42,6 +43,7 @@
       </li>
     </ul>
     <div class="navbar-nav ml-auto">
+      <a class="nav-item nav-link"><?php echo $_SESSION['login_user']; ?></a>
       <a class="nav-item nav-link" id="Username" onClick="location.href='../logout.php'">Sign Out</a>
     </div>
   </div>

@@ -15,8 +15,12 @@
           <a class="dropdown-item" href="rejectedProjects.php">Rejected Projects</a>
         </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="projectIdeas.php">Project Ideas & Interests</a>
+      </li>
     </ul>
     <div class="navbar-nav ml-auto">
+      <a class="nav-item nav-link"><?php echo $_SESSION['login_user']; ?></a>
       <a class="nav-item nav-link" id="Username" onClick="location.href='../logout.php'">Sign Out</a>
     </div>
   </div>
