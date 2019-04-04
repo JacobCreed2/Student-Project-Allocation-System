@@ -2,7 +2,7 @@
 include ('../resources/config.php');
 
 
-$sql2 = "INSERT INTO supervisors (Id,CurrentAllocation,MaxAllocation) VALUES (1,1,2),(2,0,8),(3,1,1)
+$sql2 = "INSERT INTO supervisors (Id,CurrentAllocation,MaxAllocation) VALUES (1,0,5),(2,0,2),(3,1,1),(4,0,4)
 ON DUPLICATE KEY UPDATE CurrentAllocation=VALUES(CurrentAllocation),MaxAllocation=VALUES(MaxAllocation)";
 
 if ($db->query($sql2) === TRUE) {
