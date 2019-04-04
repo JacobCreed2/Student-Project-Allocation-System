@@ -43,7 +43,7 @@ $studentId = mysqli_real_escape_string($db,$_POST['studentid']);
 $checkStuId = checkStudentId($db, $studentId);
 
 if ($checkStuId == $studentId) {
-  echo "Error SupervisorId already exsists please try again";
+  echo "Error StudentId already exsists please try again";
 }else{
   $sql = "INSERT INTO students (FirstName, LastName, StudentId) VALUES ('$firstName', '$lastName', '$studentId')";
   if ($db->query($sql) === TRUE) {
