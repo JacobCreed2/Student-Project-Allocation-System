@@ -1,44 +1,46 @@
 <?php
 include('../resources/session.php');
-//if($_SERVER["REQUEST_METHOD"] == "POST") {
 $title = mysqli_real_escape_string($db,$_POST['title']);
 $details = mysqli_real_escape_string($db,$_POST['details']);
 $supervisor = mysqli_real_escape_string($db,$_POST['selectsupervisor']);
 echo $supervisor;
 $dateCreated = date("Y-m-d H:i:s");
-$studentId = $id;
 
-function findId($db,$studentId)
+function checkAllocation($db,$supervisor)
 {
-  $findId = "SELECT StudentId FROM projects WHERE StudentId = '$studentId'";
+  $findId = "SELECT CurrentAllocation, MaxAllocation FROM supervisors WHERE Id = '$supervisor'";
 
   $result = mysqli_query($db, $findId);
 
   if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-      $stuId = $row["StudentId"];
-      //echo $stuId;
+      $current = $row['CurrentAllocation'];
+      $max = $row['MaxAllocation'];
     }
-  } else {
-    $stuId = null;
   }
-  return $stuId;
+  if ($current < $max) {
+    $check = 1;
+  }elseif ($current == $max) {
+    $check = 0;
+  }
+  return $check;
 }
 
-$findID = findId($db,$studentId);
+$check = checkAllocation($db,$supervisor);
+echo $check;
 
 if ($supervisor == "noselection") {
   echo "No selection made";
-}else{
-    $sql = "UPDATE projects SET SupervisorId = '$supervisor', ProjectTitle = '$title', ProjectDetails = '$details', ProjectCreated = '$dateCreated' WHERE StudentId = '$studentId'";
-    if ($db->query($sql) === TRUE) {
-      echo "New record created successfully\n";
-      header("Location: ../studentDashboard/projects.php");
+}elseif ($check == 1) {
+  $sql = "UPDATE projects SET SupervisorId = '$supervisor', ProjectTitle = '$title', ProjectDetails = '$details', ProjectCreated = '$dateCreated' WHERE StudentId = '$id'";
+  if ($db->query($sql) === TRUE) {
+    echo "New record created successfully\n";
+    header("Location: ../studentDashboard/projects.php");
 
-    } else {
-      echo "Error: " . $sql . "<br>" . $db->error;
-    }
+  } else {
+    echo "Error: " . $sql . "<br>" . $db->error;
+    header('Locaction: ../studentDashboard/projects.php');
+  }
 }
 $db->close();
-//}
 ?>
