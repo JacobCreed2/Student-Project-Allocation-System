@@ -9,7 +9,7 @@
 </head>
 <body>
 <?php include ('supervisorNavbar.php'); ?>
-
+<h1>Pending Projects</h1>
 <table id="projects" class="display" style="width:100%">
         <thead>
             <tr>

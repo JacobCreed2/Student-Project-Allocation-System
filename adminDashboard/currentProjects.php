@@ -9,8 +9,8 @@
 </head>
 <body>
 <?php include ('adminNavbar.php'); ?>
-<h1>Projects currently allocated to you</h1>
-<h3>Remaining Allocation:</h3>
+<h1>Projects Currently Allocated</h1>
+<h3>Remaining Allocation: <span class="text-nowrap text-info"><?php include '../shared/currentAllocation.php'; ?></span></h3>
 <table id="projects" class="display" style="width:100%">
         <thead>
             <tr>
