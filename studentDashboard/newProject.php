@@ -21,7 +21,7 @@
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="lastName">Project Description</label>
-      <input type="text" class="form-control" id="details" name="details" placeholder="Project Description" required>
+      <textarea type="text" class="form-control" id="details" name="details" placeholder="Project Description" required></textarea>
       <div class="valid-feedback">
         Looks good!
       </div>
