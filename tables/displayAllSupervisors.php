@@ -1,5 +1,4 @@
 <?php
-$supervisorId = $id; 
 $sql = "SELECT FirstName, LastName, SupervisorId, CurrentAllocation, MaxAllocation FROM supervisors";
 $result = $db->query($sql);
     // output data of each row
