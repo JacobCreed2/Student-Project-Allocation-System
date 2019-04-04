@@ -12,5 +12,13 @@
 
 <button type='button' class='btn btn-primary' onClick="window.location.href='runAllocation.php'">Start Allocation</button>
 
+<form action="../sql/setDeadline.php" method="post">
+	<input type="datetime-local" name="deadline">
+
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<h3>Current Deadline: <?php include '../sql/getDeadline.php'; echo $Deadline ?></h3>	
+
+
 </body>
 </html>

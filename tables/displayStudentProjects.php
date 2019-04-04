@@ -1,4 +1,5 @@
 <?php
+$allocated = null;
 $studentId = $id;
 $sql = "SELECT ProjectTitle, ProjectDetails, rejectedprojects.StudentId, rejectedprojects.SupervisorId, rejectedprojects.Reason, rejectedprojects.Resolved FROM projects INNER JOIN rejectedprojects ON rejectedprojects.StudentId = projects.StudentId WHERE projects.StudentId = '$studentId'";
 $result = $db->query($sql);

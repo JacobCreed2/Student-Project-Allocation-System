@@ -1,6 +1,6 @@
 <?php
-   include('../resources/session.php');
-   include('../resources/styling.html');
+include('../resources/session.php');
+include('../resources/styling.html');
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,28 +8,33 @@
 	<title>Student Project Allocation System</title>
 </head>
 <body>
-<?php include ('studentNavbar.php'); ?>
-<script>
-document.getElementById("Projects").style.color = "white";
-</script>
-<?php
-$studentId = $id;
-$sql = "SELECT ProjectTitle, ProjectDetails FROM projects WHERE StudentId = '$studentId'";
-$result = $db->query($sql);
+	<?php include ('studentNavbar.php'); ?>
+	<?php
+	$end = null;
+	$currentTime = date("Y-m-d H:i:s");
+	$sql = "SELECT ProjectTitle, ProjectDetails FROM projects WHERE StudentId = '$id'";
+	$result = $db->query($sql);
 
-if ($result->num_rows > 0) {
-	while($row = $result->fetch_assoc()) {
-		$projectTitle = $row["ProjectTitle"];
-		$projectDetails = $row["ProjectDetails"];
+	if ($result->num_rows > 0) {
+		while($row = $result->fetch_assoc()) {
+			$projectTitle = $row["ProjectTitle"];
+			$projectDetails = $row["ProjectDetails"];
+		}
 	}
-}
-if ($projectTitle == null) {
+	include '../sql/getDeadline.php';
+	if ($currentTime < $Deadline) {
+		if ($projectTitle == null) {
 	//echo "Show add project";
-	include ('newProject.php');
-}else{
+			include ('newProject.php');
+		}else{
 	//echo "Show project";
-	include ('../tables/displayStudentProjects.php');
-}
+			include ('../tables/displayStudentProjects.php');
+		}
+	}else{
+		echo "<h1 class='text-danger'>The Deadline has passed for selecting a supervisor. If you haven't selected a supervisor you will be randomly allocated.</h1>";
+		$end = 1;
+		include ('../tables/displayStudentProjects.php');
+	}
 ?>
 
 </body>

@@ -45,12 +45,20 @@
 	</div>
 	<div class="row">	
 		<div class="col">
-			<label><strong>Please feel free to edit and resubmit your Project Proposal:</strong></label>
+			<?php
+			if ($end != 1) {
+				echo "<label><strong>Please feel free to edit and resubmit your Project Proposal:</strong></label>";
+			}
+			?>
 		</div>
 	</div>
 	<div class="row">	
 		<div class="col">
-			<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#Edit' onclick="editTitle(); editDetails();">Edit Proposal</button>
+			<?php
+			if ($end != 1) {
+				echo "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#Edit' onclick='editTitle(); editDetails();'>Edit Proposal</button>";
+			}
+			?>
 		</div>
 	</div>
 </div>
