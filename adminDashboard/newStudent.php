@@ -10,7 +10,7 @@
 <body>
 <?php include ('adminNavbar.php'); ?>
 <h1>Create New Student</h1>
-<form class="needs-validation" action="../sql/createStudent.php" method="post" novalidate>
+<form class="needs-validation" action="../adminDashboard/createStudent.php" method="post" novalidate>
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="firstName">First name</label>
@@ -32,7 +32,7 @@
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="lastName">Password</label>
-      <input type="text" class="form-control" id="password" name="password" placeholder="Password" required>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
       <div class="valid-feedback">
         Looks good!
       </div>
