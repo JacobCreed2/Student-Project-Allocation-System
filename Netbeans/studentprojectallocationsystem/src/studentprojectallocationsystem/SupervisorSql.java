@@ -112,12 +112,13 @@ public class SupervisorSql {
             int current = Integer.parseInt(SupervisorsList.get(i).getCurrentAllocation());
             int updated = current + 1;
             if (current < max) {
+                studentId = RandomstudentsList.get(prefi).getStudentId();
                 SupervisorsList.get(i).setCurrentAllocation(Integer.toString(updated));
                 insertAllocStudent(studentId, Id_SupervisorList);
                 RandomStudent.removeStudent(RandomstudentsList, RandomstudentsList.get(prefi));
             } else if (current == max) {
                 SupervisorsList.remove(i);
-                System.out.println("Removed: " + RandomstudentsList);
+                System.out.println("Removed random: " + RandomstudentsList);
             }
         }
     }
