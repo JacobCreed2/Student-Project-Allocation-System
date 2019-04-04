@@ -39,10 +39,11 @@ public class Studentkeywords {
             for (int j = 0; j < SupervisorSql.SupervisorsList.size(); j++) {
                 String supervisorId = SupervisorSql.SupervisorsList.get(j).getSupervisorId();
                 String projectInterests = SupervisorSql.SupervisorsList.get(j).getProjectInterests();
-                float totalInterests = 0;
-                float countInterests = 0;
+                double totalInterests = 0;
+                double countInterests = 0;
                 System.out.println("Searching Id:" + studentId + " Details against Supervisor:" + supervisorId);
-                for (String Interest : projectInterests.split(",")) {
+                if (!projectInterests.equals("")) {
+                                    for (String Interest : projectInterests.split(",")) {
                     totalInterests++;
                     System.out.println("TotalInterests: " + totalInterests);
                     System.out.println(Interest);
@@ -57,6 +58,10 @@ public class Studentkeywords {
                 String prefScoreStr = Integer.toString(prefScore);
 
                 PrefscoresList.add(new Prefscore(studentId, supervisorId, prefScoreStr));
+                }else{
+                    j++;
+                }
+
             }
 
             PrefscoresList.forEach(Prefscore -> {
