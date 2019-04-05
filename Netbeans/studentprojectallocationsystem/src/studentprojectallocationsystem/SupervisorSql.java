@@ -86,7 +86,7 @@ public class SupervisorSql {
         for (int i = 0; i < SupervisorsList.size(); i++) {
             String Id_SupervisorList = SupervisorsList.get(i).getSupervisorId();// check if supervisor id exsists
             if (Id_SupervisorList.equals(supervisorId)) {
-                int j =0;
+                int j = 0;
                 int max = Integer.parseInt(SupervisorsList.get(i).getMaxAllocation());
                 int current = Integer.parseInt(SupervisorsList.get(i).getCurrentAllocation());
                 int updated = current + 1;
@@ -112,14 +112,19 @@ public class SupervisorSql {
             int max = Integer.parseInt(SupervisorsList.get(i).getMaxAllocation());
             int current = Integer.parseInt(SupervisorsList.get(i).getCurrentAllocation());
             int updated = current + 1;
-            if (current < max) {
-                studentId = RandomstudentsList.get(prefi).getStudentId();
-                SupervisorsList.get(i).setCurrentAllocation(Integer.toString(updated));
-                insertAllocStudent(studentId, Id_SupervisorList);
-                RandomStudent.removeStudent(RandomstudentsList, RandomstudentsList.get(prefi));
-            } else if (current == max) {
-                SupervisorsList.remove(i);
-                System.out.println("Removed random: " + RandomstudentsList);
+            if (RandomstudentsList.isEmpty()) {
+                break;
+            } else {
+                if (current < max) {
+                    studentId = RandomstudentsList.get(prefi).getStudentId();
+                    SupervisorsList.get(i).setCurrentAllocation(Integer.toString(updated));
+                    insertAllocStudent(studentId, Id_SupervisorList);
+                    RandomStudent.removeStudent(RandomstudentsList, RandomstudentsList.get(prefi));
+                    System.out.println("Removed Student:" + RandomstudentsList);
+                } else if (current == max) {
+                    SupervisorsList.remove(i);
+                    System.out.println("Removed supervisor: " + RandomstudentsList);
+                }
             }
         }
     }
