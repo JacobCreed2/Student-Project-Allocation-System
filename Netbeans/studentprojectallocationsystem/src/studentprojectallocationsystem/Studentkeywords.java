@@ -43,22 +43,22 @@ public class Studentkeywords {
                 double countInterests = 0;
                 System.out.println("Searching Id:" + studentId + " Details against Supervisor:" + supervisorId);
                 if (!projectInterests.equals("")) {
-                                    for (String Interest : projectInterests.split(",")) {
-                    totalInterests++;
-                    System.out.println("TotalInterests: " + totalInterests);
-                    System.out.println(Interest);
+                    for (String Interest : projectInterests.split(",")) {
+                        totalInterests++;
+                        System.out.println("TotalInterests: " + totalInterests);
+                        System.out.println(Interest);
 
-                    if (StudentSql.unallocatedstudents.get(i).getProjectDetails().toLowerCase().contains(Interest.toLowerCase())) {
-                        countInterests++;
-                        System.out.println("Interests found: " + countInterests);
+                        if (StudentSql.unallocatedstudents.get(i).getProjectDetails().toLowerCase().contains(Interest.toLowerCase())) {
+                            countInterests++;
+                            System.out.println("Interests found: " + countInterests);
+                        }
                     }
-                }
-                prefScore = (int) ((countInterests / totalInterests) * 100);
-                System.out.println(prefScore);
-                String prefScoreStr = Integer.toString(prefScore);
+                    prefScore = (int) ((countInterests / totalInterests) * 100);
+                    System.out.println(prefScore);
+                    String prefScoreStr = Integer.toString(prefScore);
 
-                PrefscoresList.add(new Prefscore(studentId, supervisorId, prefScoreStr));
-                }else{
+                    PrefscoresList.add(new Prefscore(studentId, supervisorId, prefScoreStr));
+                } else {
                     j++;
                 }
 
@@ -71,7 +71,7 @@ public class Studentkeywords {
     }
 
     static void findBestSupervisor() {
-
+        System.out.println(PrefscoresList);
         Collections.sort(PrefscoresList, Prefscore.sortPrefscore);
         System.out.println(PrefscoresList);
 
@@ -82,6 +82,8 @@ public class Studentkeywords {
             i--;
             System.out.println("PrefList: " + PrefscoresList);
         }
+        
+        StudentSql.checkForUnAllocatedStudents();
         
         for (int i = 0; i < RandomstudentsList.size(); i++) {
             String studentId = RandomstudentsList.get(i).getStudentId();

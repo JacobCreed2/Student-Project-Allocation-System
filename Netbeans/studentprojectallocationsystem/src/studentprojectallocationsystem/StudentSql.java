@@ -86,6 +86,37 @@ public class StudentSql {
 
     }
     
+        static void checkForUnAllocatedStudents() {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/spa-db", "root", "");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM needsallocating");
+            while (rs.next()) {
+                String studentId = rs.getString("StudentId");
+                String supervisorId = rs.getString("SupervisorId");
+                String studentFirstname = rs.getString("firstname");
+                String studentLastname = rs.getString("lastname");
+                String projectId = rs.getString("projectId");
+                String projectTitle = rs.getString("projecttitle");
+                String projectDetails = rs.getString("projectdetails");
+
+                RandomstudentsList.add(new RandomStudent(studentId, supervisorId, studentFirstname, studentLastname, projectId, projectTitle, projectDetails));
+            }
+
+            RandomstudentsList.forEach(student -> {
+                System.out.println("Checking Remaining: Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle() + " SupervisorId " + student.getSupervisorId());
+            });
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+    
         static void selectRandomAllocationStudents() {
 
         try {
@@ -139,6 +170,22 @@ public class StudentSql {
             Statement stmt = con.createStatement();
             stmt.execute("DROP TABLE needsallocating");
             stmt.execute("CREATE TABLE needsallocating(Id int NOT NULL AUTO_INCREMENT, StudentId int, SupervisorId int, FirstName varchar(20), LastName varchar(20), ProjectId int, ProjectTitle text, ProjectDetails text, Allocated int, PRIMARY KEY(Id))");
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    static void removeStudentsfromNeedAllocTable(String studentId){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/spa-db", "root", "");
+
+                    PreparedStatement pstmt = con.prepareStatement("DELETE FROM needsallocating WHERE StudentId = ?");
+                    pstmt.setString(1, studentId);
+                    pstmt.executeUpdate();
+
             con.close();
         } catch (Exception e) {
             System.out.println(e);

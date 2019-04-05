@@ -84,8 +84,9 @@ public class SupervisorSql {
     static void allocateStudents(String studentId, String supervisorId, int prefi) {
 
         for (int i = 0; i < SupervisorsList.size(); i++) {
-            String Id_SupervisorList = SupervisorsList.get(i).getSupervisorId();
+            String Id_SupervisorList = SupervisorsList.get(i).getSupervisorId();// check if supervisor id exsists
             if (Id_SupervisorList.equals(supervisorId)) {
+                int j =0;
                 int max = Integer.parseInt(SupervisorsList.get(i).getMaxAllocation());
                 int current = Integer.parseInt(SupervisorsList.get(i).getCurrentAllocation());
                 int updated = current + 1;
@@ -93,12 +94,12 @@ public class SupervisorSql {
                     SupervisorsList.get(i).setCurrentAllocation(Integer.toString(updated));
                     insertAllocStudent(studentId, supervisorId);
                     Prefscore.removeStudent(PrefscoresList, PrefscoresList.get(prefi));
+                    StudentSql.removeStudentsfromNeedAllocTable(studentId);
                 } else if (current == max) {
                     SupervisorsList.remove(i);
                     Prefscore.removeSupervisor(PrefscoresList, PrefscoresList.get(prefi));
                     System.out.println("Removed: " + PrefscoresList);
                 }
-
             }
         }
 
