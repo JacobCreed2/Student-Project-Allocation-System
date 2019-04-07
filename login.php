@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-  $UserType = $row['UserTypeId'];
+  $_SESSION['UserType'] = $row['UserTypeId'];
   $password = $row['Password'];
   
   
@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   if(password_verify($formPassword, $password)) {
      $_SESSION['login_user'] = $formUsername;
 
-      switch ($UserType) {
+      switch ($_SESSION['UserType']) {
       case '1':
         header("location: ./adminDashboard/adminDash.php");
         break;

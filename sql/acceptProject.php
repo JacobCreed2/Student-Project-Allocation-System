@@ -2,7 +2,7 @@
 include ('../resources/session.php');
 include ('../sql/checkAllocation.php');
 //if($_SERVER["REQUEST_METHOD"] == "POST") {
-$rowId = mysqli_real_escape_string($db,$_SESSION['rowId']);
+$rowId = mysqli_real_escape_string($db,$_POST['id']);
 $supervisorId = mysqli_real_escape_string($db,$id);
 
 if ($currentAllocation < $maxAllocation) {
@@ -16,7 +16,11 @@ if ($currentAllocation < $maxAllocation) {
   $sql1 = "UPDATE supervisors SET CurrentAllocation = CurrentAllocation + 1 WHERE Id = '$supervisorId'";
   if ($db->query($sql1) === TRUE) {
     echo "Supervisors updated\n";
-    header('Location: ../adminDashboard/pendingProjects.php');
+      if ($_SESSION['UserType'] == 1) {
+      header("Location: ../adminDashboard/currentProjects.php");
+    }else{
+      header("Location: ../supervisorDashboard/currentProjects.php");
+    }
 
   } else {
     echo "Error: " . $sql1 . "<br>" . $db->error;

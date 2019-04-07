@@ -4,13 +4,13 @@ $sql = "SELECT projects.Id, students.FirstName, students.LastName, projects.Stud
 $result = $db->query($sql);
     // output data of each row
 while($row = $result->fetch_assoc()) {
-    $_SESSION['rowId'] = $row["StudentId"];
+    $StuId = $row["StudentId"];
     $_SESSION['projectId'] = $row["Id"];
     echo '<tr>';
     echo "<td>". $row["FirstName"] . " " . $row["LastName"] . "</td>";
     echo "<td>". $row["ProjectTitle"] . "</td>";
     echo "<td>". nl2br($row["ProjectDetails"]) . "</td>";
-    echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#Accept' onclick=window.location.href='../sql/acceptProject.php'>Accept</button><br><br>
+    echo "<td><form action='../sql/acceptProject.php' method='post'><button type='submit' class='btn btn-primary' data-toggle='modal' data-target='#Accept' name='id' value='". $row["StudentId"] ."'>Accept</button></form><br><br>
     <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#Reject'>Reject</button></td>";
     echo "</tr>";
 }
