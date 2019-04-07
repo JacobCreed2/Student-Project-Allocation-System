@@ -15,6 +15,7 @@ document.getElementById("Students").style.color = "white";
 
 <button type='button' class='btn btn-primary' onClick="window.location.href='../testing/recreateProjects.php'">Reset Projects Table</button>
 <button type='button' class='btn btn-primary' onClick="window.location.href='../testing/recreateSupervisors.php'">Reset Supervisors Table</button>
+<button type='button' class='btn btn-primary' onClick="window.location.href='../testing/recreateRejectProjects.php'">Reset Reject Projects Table</button>
 
 </body>
 </html>
