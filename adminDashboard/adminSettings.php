@@ -17,7 +17,8 @@
 
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<h3>Current Deadline: <?php include '../sql/getDeadline.php'; echo $Deadline ?></h3>	
+<h3>Current Deadline: <?php include '../sql/getDeadline.php'; echo $Deadline ?></h3>
+<?php echo date_default_timezone_get(); ?>	
 
 
 </body>
