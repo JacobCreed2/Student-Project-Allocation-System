@@ -10,8 +10,8 @@ $sql1 = "CREATE TABLE `projects` (
   `ProjectCreated` datetime DEFAULT NULL,
   `Allocated` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Id`),
-  CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`StudentId`) REFERENCES `students` (`Id`) ON UPDATE NO ACTION,
-  CONSTRAINT `projects_ibfk_2` FOREIGN KEY (`SupervisorId`) REFERENCES `supervisors` (`Id`) ON UPDATE NO ACTION
+  CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`StudentId`) REFERENCES `students` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `projects_ibfk_2` FOREIGN KEY (`SupervisorId`) REFERENCES `supervisors` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1";
 
 $sql2 = "INSERT INTO `projects` (`Id`, `StudentId`, `SupervisorId`, `ProjectTitle`, `ProjectDetails`, `ProjectCreated`, `Allocated`) VALUES

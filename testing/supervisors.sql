@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2019 at 05:28 PM
+-- Generation Time: Apr 10, 2019 at 02:24 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -44,9 +44,10 @@ CREATE TABLE `supervisors` (
 --
 
 INSERT INTO `supervisors` (`Id`, `FirstName`, `LastName`, `SupervisorId`, `ProjectIdeas`, `ProjectInterests`, `CurrentAllocation`, `MaxAllocation`) VALUES
-(1, 'Dan', 'Button', 20000, 'Project Allocation System:\r\n\r\nImplement a final year Project Allocation System in python/java or other preferable program language. The system must allow random allocation, allocation based on choice, decline/accept capabilities etc.', 'AI, Security, PHP, Java', 0, 5),
-(2, 'James', 'Daniels', 25058, 'Multicasting of Bandwidth Efficient Video in Multiradio Multicellular Wireless networks.\r\n\r\nAuthentication and Adaptive Security for DNS System.', 'Wireless, Networking, DNS, Security', 0, 2),
-(3, 'Sam', 'Jones', 25898, '', '', 1, 1);
+(1, 'Dan', 'Button', 20000, 'Project Allocation System:\r\n\r\nImplement a final year Project Allocation System in python/java or other preferable program language. The system must allow random allocation, allocation based on choice, decline/accept capabilities etc.', 'AI, Security, PHP, Java', 0, 1),
+(2, 'James', 'Daniels', 25058, 'Multicasting of Bandwidth Efficient Video in Multiradio Multicellular Wireless networks.\\r\\n\\r\\nAuthentication and Adaptive Security for DNS System.', 'Wireless, Networking, DNS, Security', 0, 3),
+(3, 'Sam', 'Jones', 25898, 'test', 'test1, test2', 0, 4),
+(5, 'Charles', 'Smith', 25589, '', '', 0, 3);
 
 --
 -- Indexes for dumped tables
@@ -67,7 +68,7 @@ ALTER TABLE `supervisors`
 -- AUTO_INCREMENT for table `supervisors`
 --
 ALTER TABLE `supervisors`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
