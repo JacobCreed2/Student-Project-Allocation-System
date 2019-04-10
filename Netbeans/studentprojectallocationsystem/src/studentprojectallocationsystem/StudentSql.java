@@ -20,6 +20,44 @@ public class StudentSql {
     public static ArrayList<Student> unallocatedstudents = new ArrayList<Student>();
     public static ArrayList<RandomStudent> RandomstudentsList = new ArrayList<RandomStudent>();
     public static ArrayList<Student> StudentsList = new ArrayList<Student>();
+    public static int countStudents = 0;
+    public static int totalAllocationSupervisors = 0;
+
+    static void checkNumberofStudents() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/spa-db", "root", "");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT COUNT(Id) FROM students");
+            while (rs.next()) {
+                String countID = rs.getString("COUNT(Id)");
+                countStudents = Integer.parseInt(countID);
+            }
+            
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    static void checkTotalAllocation() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/spa-db", "root", "");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT SUM(MaxAllocation) FROM supervisors");
+            while (rs.next()) {
+                String totalAllocation = rs.getString("SUM(MaxAllocation)");
+                totalAllocationSupervisors = Integer.parseInt(totalAllocation);
+            }
+            
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
     static void selectAllStudents() {
 
@@ -43,9 +81,9 @@ public class StudentSql {
                 //System.out.println(students);
             }
 
-            StudentsList.forEach(student -> {
-                System.out.println("Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle() + " SupervisorId " + student.getSupervisorId());
-            });
+//            StudentsList.forEach(student -> {
+//                System.out.println("Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle() + " SupervisorId " + student.getSupervisorId());
+//            });
 
             con.close();
         } catch (Exception e) {
@@ -75,9 +113,9 @@ public class StudentSql {
                 unallocatedstudents.add(new Student(studentId, supervisorId, studentFirstname, studentLastname, projectId, projectTitle, projectDetails, projectAllocated));
             }
 
-            unallocatedstudents.forEach(student -> {
-                System.out.println("Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle() + " SupervisorId " + student.getSupervisorId());
-            });
+//            unallocatedstudents.forEach(student -> {
+//                System.out.println("Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle() + " SupervisorId " + student.getSupervisorId());
+//            });
 
             con.close();
         } catch (Exception e) {
@@ -85,8 +123,8 @@ public class StudentSql {
         }
 
     }
-    
-        static void checkForUnAllocatedStudents() {
+
+    static void checkForUnAllocatedStudents() {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -106,9 +144,9 @@ public class StudentSql {
                 RandomstudentsList.add(new RandomStudent(studentId, supervisorId, studentFirstname, studentLastname, projectId, projectTitle, projectDetails));
             }
 
-            RandomstudentsList.forEach(student -> {
-                System.out.println("Checking Remaining: Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle() + " SupervisorId " + student.getSupervisorId());
-            });
+//            RandomstudentsList.forEach(student -> {
+//                System.out.println("Checking Remaining: Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle() + " SupervisorId " + student.getSupervisorId());
+//            });
 
             con.close();
         } catch (Exception e) {
@@ -116,8 +154,8 @@ public class StudentSql {
         }
 
     }
-    
-        static void selectRandomAllocationStudents() {
+
+    static void selectRandomAllocationStudents() {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -137,9 +175,9 @@ public class StudentSql {
                 RandomstudentsList.add(new RandomStudent(studentId, supervisorId, studentFirstname, studentLastname, projectId, projectTitle, projectDetails));
             }
 
-            RandomstudentsList.forEach(student -> {
-                System.out.println("Random: " + "Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle() + " SupervisorId " + student.getSupervisorId());
-            });
+//            RandomstudentsList.forEach(student -> {
+//                System.out.println("Random: " + "Student Project ID " + student.getProjectId() + " ProjectTitle " + student.getProjectTitle() + " SupervisorId " + student.getSupervisorId());
+//            });
 
             con.close();
         } catch (Exception e) {
@@ -175,16 +213,16 @@ public class StudentSql {
             System.out.println(e);
         }
     }
-    
-    static void removeStudentsfromNeedAllocTable(String studentId){
+
+    static void removeStudentsfromNeedAllocTable(String studentId) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/spa-db", "root", "");
 
-                    PreparedStatement pstmt = con.prepareStatement("DELETE FROM needsallocating WHERE StudentId = ?");
-                    pstmt.setString(1, studentId);
-                    pstmt.executeUpdate();
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM needsallocating WHERE StudentId = ?");
+            pstmt.setString(1, studentId);
+            pstmt.executeUpdate();
 
             con.close();
         } catch (Exception e) {
@@ -208,8 +246,8 @@ public class StudentSql {
                     String studentLastname = StudentsList.get(i).getStudentLastname();
                     String projectId = StudentsList.get(i).getProjectId();
                     String projectTitle = StudentsList.get(i).getProjectTitle();
-                    String projectDetails = StudentsList.get(i).getProjectDetails(); 
-                    
+                    String projectDetails = StudentsList.get(i).getProjectDetails();
+
                     PreparedStatement pstmt = con.prepareStatement("INSERT INTO randomallocation (StudentId,SupervisorId,FirstName,LastName,ProjectId,ProjectTitle,ProjectDetails) VALUES (?, ?, ?, ?, ?, ?, ?)");
                     pstmt.setString(1, studentId);
                     pstmt.setString(2, supervisorId);
@@ -219,8 +257,7 @@ public class StudentSql {
                     pstmt.setString(6, projectTitle);
                     pstmt.setString(7, projectDetails);
                     pstmt.executeUpdate();
-                    System.out.println("Needs random allocation " + studentId);
-                    System.out.println("Needs random allocation " + studentFirstname);
+                    System.out.println("Needs random allocation " + studentId + " " + studentFirstname);
                 } else if (StudentsList.get(i).getProjectTitle() != null && StudentsList.get(i).getSupervisorId() != null && StudentsList.get(i).getProjectAllocated().equals(zero)) { //Students haven't been allocated.
                     String studentId = StudentsList.get(i).getStudentId();
                     String supervisorId = StudentsList.get(i).getSupervisorId();
@@ -241,8 +278,7 @@ public class StudentSql {
                     pstmt.setString(7, projectDetails);
                     pstmt.setString(8, allocated);
                     pstmt.executeUpdate();
-                    System.out.println("Needs allocating " + studentId);
-                    System.out.println("Needs allocating " + studentFirstname);
+                    System.out.println("Needs allocating " + studentId + " " + studentFirstname);
                 } else if (StudentsList.get(i).getProjectTitle() != null && StudentsList.get(i).getSupervisorId() != null && StudentsList.get(i).getProjectAllocated().equals(one)) { //Students have been allocated
                     System.out.println("This student is already allocated. Ignoring...");
                 } else {

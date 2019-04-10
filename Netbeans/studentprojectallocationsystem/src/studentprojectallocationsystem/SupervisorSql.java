@@ -41,9 +41,9 @@ public class SupervisorSql {
                 SupervisorsList.add(new Supervisor(supervisorId, supervisorFirstname, supervisorLastname, projectInterests, currentAllocation, maxAllocation));
             }
 
-            SupervisorsList.forEach(supervisor -> {
-                System.out.println("Supervisor ID " + supervisor.getSupervisorId() + " Project interests: " + supervisor.getProjectInterests() + " Current Allocation " + supervisor.getCurrentAllocation());
-            });
+//            SupervisorsList.forEach(supervisor -> {
+//                System.out.println("Supervisor ID " + supervisor.getSupervisorId() + " Project interests: " + supervisor.getProjectInterests() + " Current Allocation " + supervisor.getCurrentAllocation());
+//            });
 
             con.close();
         } catch (Exception e) {
@@ -98,7 +98,7 @@ public class SupervisorSql {
                 } else if (current == max) {
                     SupervisorsList.remove(i);
                     Prefscore.removeSupervisor(PrefscoresList, PrefscoresList.get(prefi));
-                    System.out.println("Removed: " + PrefscoresList);
+                    System.out.println("Removed Supervisor from prefscore: " + PrefscoresList);
                 }
             }
         }
@@ -120,10 +120,10 @@ public class SupervisorSql {
                     SupervisorsList.get(i).setCurrentAllocation(Integer.toString(updated));
                     insertAllocStudent(studentId, Id_SupervisorList);
                     RandomStudent.removeStudent(RandomstudentsList, RandomstudentsList.get(prefi));
-                    System.out.println("Removed Student:" + RandomstudentsList);
+                    System.out.println("Removed Student from Random Allocation:" + RandomstudentsList);
                 } else if (current == max) {
                     SupervisorsList.remove(i);
-                    System.out.println("Removed supervisor: " + RandomstudentsList);
+                    System.out.println("Removed supervisor from Random Allocation: " + RandomstudentsList);
                 }
             }
         }

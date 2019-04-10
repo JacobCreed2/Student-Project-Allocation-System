@@ -26,7 +26,7 @@ public class Studentkeywords {
 
         Collections.shuffle(unallocatedstudents);
 
-        System.out.println("Shuffled: " + unallocatedstudents);
+        System.out.println("Shuffled Unallocated students");
 
     }
 
@@ -41,16 +41,16 @@ public class Studentkeywords {
                 String projectInterests = SupervisorSql.SupervisorsList.get(j).getProjectInterests();
                 double totalInterests = 0;
                 double countInterests = 0;
-                System.out.println("Searching Id:" + studentId + " Details against Supervisor:" + supervisorId);
+                System.out.println("Finding intestes in Student: " + studentId + " Project proposal to Supervisor: " + supervisorId);
                 if (!projectInterests.equals("")) {
                     for (String Interest : projectInterests.split(",")) {
                         totalInterests++;
-                        System.out.println("TotalInterests: " + totalInterests);
-                        System.out.println(Interest);
+//                        System.out.println("TotalInterests: " + totalInterests);
+//                        System.out.println(Interest);
 
                         if (StudentSql.unallocatedstudents.get(i).getProjectDetails().toLowerCase().contains(Interest.toLowerCase())) {
                             countInterests++;
-                            System.out.println("Interests found: " + countInterests);
+//                            System.out.println("Interests found: " + countInterests);
                         }
                     }
                     prefScore = (int) ((countInterests / totalInterests) * 100);
@@ -64,9 +64,9 @@ public class Studentkeywords {
 
             }
 
-            PrefscoresList.forEach(Prefscore -> {
-                System.out.println("StudentId:" + Prefscore.getStudentId() + " SupervisorId:" + Prefscore.getSupervisorId() + " PrefScore:" + Prefscore.getPrefScore());
-            });
+//            PrefscoresList.forEach(Prefscore -> {
+//                System.out.println("StudentId:" + Prefscore.getStudentId() + " SupervisorId:" + Prefscore.getSupervisorId() + " PrefScore:" + Prefscore.getPrefScore());
+//            });
         }
     }
 
