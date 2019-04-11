@@ -3,7 +3,7 @@ include('../resources/session.php');
 $title = mysqli_real_escape_string($db,$_POST['title']);
 $details = mysqli_real_escape_string($db,$_POST['details']);
 $supervisor = mysqli_real_escape_string($db,$_POST['selectsupervisor']);
-echo $supervisor;
+//echo $supervisor;
 $dateCreated = date("Y-m-d H:i:s");
 
 function checkAllocation($db,$supervisor)
@@ -27,19 +27,22 @@ function checkAllocation($db,$supervisor)
 }
 
 $check = checkAllocation($db,$supervisor);
-echo $check;
+//echo "Check: " . $check;
 
 if ($supervisor == "noselection") {
   echo "No selection made";
-}elseif ($check == 1) {
-  $sql = "UPDATE projects SET SupervisorId = '$supervisor', ProjectTitle = '$title', ProjectDetails = '$details', ProjectCreated = '$dateCreated' WHERE StudentId = '$id'";
-  if ($db->query($sql) === TRUE) {
-    echo "New record created successfully\n";
-    header("Location: ../studentDashboard/projects.php");
+}else{
+  if ($check == 1) {
+    $sql = "UPDATE projects SET SupervisorId = '$supervisor', ProjectTitle = '$title', ProjectDetails = '$details', ProjectCreated = '$dateCreated' WHERE StudentId = '$id'";
+    if ($db->query($sql) === TRUE) {
+      echo "New record created successfully\n";
+      header("Location: ../studentDashboard/projects.php");
 
-  } else {
-    echo "Error: " . $sql . "<br>" . $db->error;
-    header('Locaction: ../studentDashboard/projects.php');
+    } else {
+      echo "Error: " . $sql . "<br>" . $db->error;
+    }
+  }elseif ($check == 0) {
+    echo "Supervisor full. Please return to the previous page and select another supervisor";
   }
 }
 $db->close();

@@ -1,6 +1,6 @@
 <?php
-   include('../resources/session.php');
-   include('../resources/styling.html');
+include('../resources/session.php');
+include('../resources/styling.html');
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,9 +8,10 @@
 	<title>Student Project Allocation System</title>
 </head>
 <body>
-<?php include ('adminNavbar.php'); ?>
-<h1>Pending Projects</h1>
-<table id="projects" class="display" style="width:100%">
+    <?php include ('adminNavbar.php'); ?>
+    <h1>Pending Projects</h1>
+    <h3>Remaining Allocation: <span class="text-nowrap text-info"><?php include '../shared/currentAllocation.php'; ?></span></h3>
+    <table id="projects" class="display" style="width:100%">
         <thead>
             <tr>
                 <th>Student</th>
@@ -22,7 +23,7 @@
         <tbody>
             <?php
             include ('../tables/displayPendingProjects.php');
-             ?>
+            ?>
         </tbody>
         <tfoot>
             <tr>
@@ -32,11 +33,11 @@
                 <th>Options</th>
             </tr>
         </tfoot>
-</table>
-<script>
-	    $('#projects').DataTable( {
-    } );
-</script>
-<?php include('../shared/rejectProjectForm.php'); ?>
+    </table>
+    <script>
+       $('#projects').DataTable( {
+       } );
+   </script>
+   <?php include('../shared/rejectProjectForm.php'); ?>
 </body>
 </html>

@@ -17,6 +17,7 @@
                 <th>Project Title</th>
                 <th>Project Description</th>
                 <th>Supervisor found?</th>
+                <th>Supervisor</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,7 @@
                 <th>Project Title</th>
                 <th>Project Description</th>
                 <th>Supervisor found?</th>
+                <th>Supervisor</th>
             </tr>
         </tfoot>
 </table>

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand text-white" >Admin Dashboard</a>
+  <a class="navbar-brand text-white" >Supervisor Dashboard</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -10,8 +10,8 @@
           Projects
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="currentProjects.php">Projects Currently Supervising</a>
           <a class="dropdown-item" href="pendingProjects.php">Pending Projects</a>
+          <a class="dropdown-item" href="currentProjects.php">Currently Approved Projects</a>
           <a class="dropdown-item" href="rejectedProjects.php">Rejected Projects</a>
         </div>
       </li>

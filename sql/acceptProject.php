@@ -2,7 +2,7 @@
 include ('../resources/session.php');
 include ('../sql/checkAllocation.php');
 //if($_SERVER["REQUEST_METHOD"] == "POST") {
-$rowId = mysqli_real_escape_string($db,$_POST['id']);
+$rowId = mysqli_real_escape_string($db,$_POST['Accept']);
 $supervisorId = mysqli_real_escape_string($db,$id);
 
 if ($currentAllocation < $maxAllocation) {
@@ -26,6 +26,8 @@ if ($currentAllocation < $maxAllocation) {
     echo "Error: " . $sql1 . "<br>" . $db->error;
   }
 }elseif ($currentAllocation == $maxAllocation) {
+  $allocationEr = 'Your allocation is full';
+  $_SESSION['AllocationError'] = $allocationEr;
   header('Location: ../adminDashboard/pendingProjects.php');
 }
 $db->close();

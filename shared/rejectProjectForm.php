@@ -18,8 +18,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <?php echo "<button type='submit' name='id' value='". $StuId ."' class='btn btn-primary'>Submit</button>" ?>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" OnClick='../adminDashboard/pendingProjects.php'>Close</button>
+          <button type='submit' id='subrej' name='id' class='btn btn-primary'>Submit</button>
         </div>
       </form>
     </div>

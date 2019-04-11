@@ -1,6 +1,6 @@
 <?php
-   include('../resources/session.php');
-   include('../resources/styling.html');
+include('../resources/session.php');
+include('../resources/styling.html');
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,49 +8,49 @@
   <title>Student Project Allocation System</title>
 </head>
 <body>
-<?php include ('adminNavbar.php'); ?>
-<h1>Create New Student</h1>
-<form class="needs-validation" action="../adminDashboard/createStudent.php" method="post" novalidate>
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="firstName">First name</label>
-      <input type="text" class="form-control" id="firstName" name="firstname" placeholder="First name" required>
-      <div class="valid-feedback">
-        Looks good!
+  <?php include ('adminNavbar.php'); ?>
+  <h1>Create New Student</h1>
+  <form class="needs-validation" action="../adminDashboard/createStudent.php" method="post" novalidate>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="firstName">First name</label>
+        <input type="text" class="form-control" id="firstName" name="firstname" placeholder="First name" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="lastName">Last name</label>
-      <input type="text" class="form-control" id="lastName" name="lastname" placeholder="Last name" required>
-      <div class="valid-feedback">
-        Looks good!
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="lastName">Last name</label>
+        <input type="text" class="form-control" id="lastName" name="lastname" placeholder="Last name" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="lastName">Password</label>
-      <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-      <div class="valid-feedback">
-        Looks good!
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="lastName">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="studentId">Student Id</label>
-      <input type="text" class="form-control" id="studentId" name="studentid" placeholder="Student Id" required>
-      <div class="valid-feedback">
-        Looks good!
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="studentId">Student Id</label>
+        <input type="text" class="form-control" id="studentId" name="studentid" placeholder="Student Id" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
       </div>
     </div>
-  </div>
-  <button class="btn btn-primary" type="submit">Create new student</button>
-</form>
+    <button class="btn btn-primary" type="submit">Create new student</button>
+  </form>
 
-<script>
+  <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
   'use strict';

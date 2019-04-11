@@ -31,7 +31,8 @@ include('../resources/styling.html');
 			include ('../tables/displayStudentProjects.php');
 		}
 	}else{
-		echo "<h1 class='text-danger'>The Deadline has passed for selecting a supervisor. If you haven't selected a supervisor you will be randomly allocated.</h1>";
+		//header("Refresh:0");
+		echo "<h1 class='text-danger'>The Deadline has passed for proposing a project. If you haven't proposed anything then you will be randomly allocated.</h1>";
 		$end = 1;
 		include ('../tables/displayStudentProjects.php');
 	}

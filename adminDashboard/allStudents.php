@@ -15,6 +15,7 @@
             <tr>
                 <th>Student</th>
                 <th>StudentId</th>
+                <th>Options</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@
             <tr>
                 <th>Student</th>
                 <th>StudentId</th>
+                <th>Options</th>
             </tr>
         </tfoot>
 </table>

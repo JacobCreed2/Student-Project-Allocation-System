@@ -29,8 +29,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="allProjects.php">All Projects</a>
-          <a class="dropdown-item" href="currentProjects.php">Projects Currently Supervising</a>
           <a class="dropdown-item" href="pendingProjects.php">Pending Projects</a>
+          <a class="dropdown-item" href="currentProjects.php">Currently Approved Projects</a>
           <a class="dropdown-item" href="rejectedProjects.php">Rejected Projects</a>
           <a class="dropdown-item" href="projectIdeas.php">Add Project Ideas & Interests</a>
         </div>

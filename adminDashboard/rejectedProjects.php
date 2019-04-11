@@ -10,6 +10,7 @@
 <body>
 <?php include ('adminNavbar.php'); ?>
 <h1>Rejected Projects</h1>
+<h3>Remaining Allocation: <span class="text-nowrap text-info"><?php include '../shared/currentAllocation.php'; ?></span></h3>
 <table id="projects" class="display" style="width:100%">
         <thead>
             <tr>

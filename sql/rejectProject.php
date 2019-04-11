@@ -1,6 +1,5 @@
 <?php 
 include ('../resources/session.php');
-//if($_SERVER["REQUEST_METHOD"] == "POST") {
   $rowId = mysqli_real_escape_string($db,$_POST['id']);//rowId is stored in the session. It's just the student ID. 
   $supervisorId = mysqli_real_escape_string($db,$id);// supevisor Id from the session.
   $projectId = mysqli_real_escape_string($db,$_SESSION['projectId']);// project Id stored in the session 
@@ -18,9 +17,9 @@ if ($db->query($sql) === TRUE) {
 if ($db->query($sql1) === TRUE) {
     echo "Project updated successfully\n";
     if ($_SESSION['UserType'] == 1) {
-      header("Location: ../adminDashboard/currentProjects.php");
+      header("Location: ../adminDashboard/rejectedProjects.php");
     }else{
-      header("Location: ../supervisorDashboard/currentProjects.php");
+      header("Location: ../supervisorDashboard/rejectedProjects.php");
     }
 
 
