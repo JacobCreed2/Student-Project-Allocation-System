@@ -9,7 +9,7 @@ $sql = "UPDATE supervisors SET ProjectIdeas = '$ideas', ProjectInterests = '$int
 echo $sql;
 if ($db->query($sql) === TRUE) {
   echo "New record created successfully\n";
-  if ($_SESSION['UserTypeId'] == 1) {
+  if ($_SESSION['UserType'] == 1) {
   	  header("Location: ../adminDashboard/projectIdeas.php");
   }else{
   	header("Location: ../supervisorDashboard/projectIdeas.php");
