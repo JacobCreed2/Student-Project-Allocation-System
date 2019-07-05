@@ -20,7 +20,7 @@ if ($db->query($sql2) === TRUE) {
 $sql = "DELETE FROM projects WHERE studentId = '$student'";
 if ($db->query($sql) === TRUE) {
   echo "record updated successfully\n";
-  //header('Location: ../adminDashboard/allSupervisors.php');
+  header('Location: ../adminDashboard/allStudents.php');
 
 } else {
   echo "Error: " . $sql . "<br>" . $db->error;
